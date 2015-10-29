@@ -10,6 +10,11 @@ namespace LogisticSolutions.Controllers
     public class DeliveryController : Controller
     {
 
+        public ActionResult AddDelivery()
+        {
+            return View();
+        }
+
         public ActionResult Tracking(string deliveryNumber)
         {
 
