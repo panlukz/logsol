@@ -1,7 +1,20 @@
-﻿@model dynamic
+﻿@using LogisticSolutions.Models
+
 
 @{
     ViewBag.Title = "Tracking";
 }
 
 <h2>Śledzenie statusu przesyłki</h2>
+
+<table>
+    @foreach (TrackingStatus trackingStatus in Model)
+    {
+        <tr>
+            <td>@trackingStatus.DateTime</td>
+            <td>@trackingStatus.Status</td>
+            <td>@trackingStatus.Author</td>
+            <td>@trackingStatus.Location</td>
+        </tr>
+    }
+</table>
