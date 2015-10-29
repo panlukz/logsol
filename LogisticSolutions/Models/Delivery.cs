@@ -52,5 +52,20 @@ namespace LogisticSolutions.Models
         {
             get { return _trackingHistory; }
         }
+
+        public void AddTrackingPoint(TrackingStatusEnum trackingStatus)
+        {
+            var trackingHistoryPoint = new TrackingStatus()
+            {
+                //TODO retrieve author name from identity class
+                Author = "Author name",
+                DateTime = DateTime.Now,
+                //TODO retrieve location name from identity location
+                Location = "Location name",
+                Status = trackingStatus
+            };
+
+            _trackingHistory.Add(trackingHistoryPoint);
+        }
     }
 }
