@@ -7,10 +7,10 @@ using LogisticSolutions.Models;
 
 namespace LogisticSolutions.Controllers
 {
-    public class TrackingController : Controller
+    public class DeliveryController : Controller
     {
-        // GET: Tracking
-        public ActionResult Index(string deliveryNumber)
+
+        public ActionResult Tracking(string deliveryNumber)
         {
 
             var pickupAddress = new PostalAddress("Krzyżowa 22/1 42-123 Warszawa");
