@@ -7,5 +7,16 @@ namespace LogisticSolutions.Models
 {
     public class PostalAddress
     {
+        private string _address;
+
+        public PostalAddress(string address)
+        {
+            _address = address;
+        }
+
+        public string Address
+        {
+            get { return _address; }
+        }
     }
 }
