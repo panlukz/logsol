@@ -7,6 +7,7 @@ namespace LogisticSolutions.Models
 {
     public enum TrackingStatusEnum
     {
-        RegistredInSystem
+        RegistredInSystem,
+        PickedUpFromSender
     }
 }
