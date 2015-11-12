@@ -1,0 +1,10 @@
+﻿@using LogisticSolutions.Models
+
+@model LogisticSolutions.Models.Delivery
+
+<ul>
+    @foreach (TrackingStatus status in Model.TrackingHistory)
+    {
+        <li>@status.DateTime | @status.Location | @status.Status | @status.Author</li>
+    }  
+</ul>

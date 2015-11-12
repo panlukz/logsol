@@ -8,6 +8,10 @@ namespace LogisticSolutions.Models
     public enum TrackingStatusEnum
     {
         RegistredInSystem,
-        PickedUpFromSender
+        PickedUpFromSender,
+        WarehouseReceipt,
+        WarehouseRelease,
+        InDelivery,
+        Delivered
     }
 }

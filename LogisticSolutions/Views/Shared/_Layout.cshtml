@@ -21,11 +21,27 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Informacje", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Śledzenie przesyłki", "Tracking", "Delivery")</li>
-                    <li>@Html.ActionLink("Zleć odbiór", "AddDelivery", "Delivery")</li>
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.Partial("AdminMenu")
+                        @Html.Partial("WarehousemanMenu")
+                        @Html.Partial("CourierMenu")
+                        @Html.Partial("CustomerMenu")
+                    }
+                    else if (User.IsInRole("Warehouseman"))
+                    {
+                        @Html.Partial("WarehousemanMenu")
+                    }
+                    else if (User.IsInRole("Courier"))
+                    {
+                        @Html.Partial("CourierMenu")
+                    }
+                    else if (User.IsInRole("Customer"))
+                    {
+                        @Html.Partial("CustomerMenu")
+                    }
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

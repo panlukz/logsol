@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using LogisticSolutions.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LogisticSolutions.Controllers
 {
@@ -10,6 +14,24 @@ namespace LogisticSolutions.Controllers
     {
         public ActionResult Index()
         {
+            var currentUserId = User.Identity.GetUserId();
+            var userManager =
+                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = userManager.FindById(currentUserId);
+
+
+            if (currentUser != null)
+            {
+                ViewBag.UserLocation = currentUser.UserInfo.Location;
+                ViewBag.UserRole = "Dupa nie działa :-(";
+
+            }
+            else
+            {
+                ViewBag.UserLocation = "Niezalogowany";
+                ViewBag.UserRole = "Niezalogowany";
+            }
+
             return View();
         }
 

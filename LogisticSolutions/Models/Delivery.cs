@@ -1,71 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LogisticSolutions.Models
 {
     public class Delivery
     {
-        private string _number;
-        private PostalAddress _pickupAddress;
-        private PostalAddress _destinationAddress;
-        private List<TrackingStatus> _trackingHistory;
-
-        public Delivery(PostalAddress pickupAddress, PostalAddress destinationAddress)
+        public Delivery()
         {
-            _number =
-                (DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + DateTime.Now.Hour + DateTime.Now.Minute +
-                 DateTime.Now.Second).ToString();
-            _pickupAddress = pickupAddress;
-            _destinationAddress = destinationAddress;
-
-            _trackingHistory = new List<TrackingStatus>();
-
-            var trackingHistoryPoint = new TrackingStatus()
-            {
-                //TODO retrieve author name from identity class
-                Author = "Author name",
-                DateTime = DateTime.Now,
-                Location = "System",
-                Status = TrackingStatusEnum.RegistredInSystem
-            };
-
-            _trackingHistory.Add(trackingHistoryPoint);
-
+            TrackingHistory = new HashSet<TrackingStatus>();
         }
 
-        public string Number
-        {
-            get { return _number; }
-        }
+        [Key]
+        public string Number { get; set; }
 
-        public PostalAddress PickupAddress
-        {
-            get { return _pickupAddress; }
-        }
+        public string SenderId { get; set; }
 
-        public PostalAddress DestinatonAddress
-        {
-            get { return _destinationAddress; }
-        }
+        public PostalAddress PickupAddress { get; set; }
 
-        public List<TrackingStatus> TrackingHistory
-        {
-            get { return _trackingHistory; }
-        }
+        public PostalAddress DestinationAddress { get; set; }
 
-        public void AddTrackingPoint(TrackingStatusEnum trackingStatus)
-        {
-            var trackingHistoryPoint = new TrackingStatus()
-            {
-                //TODO retrieve author name from identity class
-                Author = "Author name",
-                DateTime = DateTime.Now,
-                //TODO retrieve location name from identity location
-                Location = "Location name",
-                Status = trackingStatus
-            };
-
-            _trackingHistory.Add(trackingHistoryPoint);
-        }
+        public virtual ICollection<TrackingStatus> TrackingHistory { get; private set; }
     }
 }

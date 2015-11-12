@@ -7,16 +7,17 @@ namespace LogisticSolutions.Models
 {
     public class PostalAddress
     {
-        private string _address;
-
-        public PostalAddress(string address)
+        public PostalAddress()
         {
-            _address = address;
+            
         }
 
-        public string Address
-        {
-            get { return _address; }
-        }
+        public string AddressLine1 { get; set; }
+
+        public string AddressLine2 { get; set; }
+
+        public string PostalCode { get; set; }
+
+        public string City { get; set; }
     }
 }

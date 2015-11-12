@@ -7,13 +7,18 @@
 <h2>Śledzenie przesyłki</h2>
 
 <table>
-    @foreach (TrackingStatus trackingStatus in Model)
+    @foreach (Delivery delivery in Model)
     {
         <tr>
-            <td>@trackingStatus.DateTime</td>
-            <td>@trackingStatus.Status</td>
-            <td>@trackingStatus.Author</td>
-            <td>@trackingStatus.Location</td>
+            <th>Data, godzina:</th>
+            <th>Miasto odbioru:</th>
+            <th>Miasto doręczenia:</th>
+        </tr>
+        <tr>
+            <td>@delivery.TrackingHistory.Where(t => t.Status == TrackingStatusEnum.RegistredInSystem).FirstOrDefault().DateTime</td>
+            <td>@delivery.PickupAddress.City</td>
+            <td>@delivery.DestinationAddress.City</td>
+            <td>@Html.ActionLink("Więcej informacji...", "TrackingDetails", new {Controller ="Delivery", id = delivery.Number })</td>
         </tr>
     }
 </table>

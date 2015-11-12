@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -57,6 +58,11 @@ namespace LogisticSolutions.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            using (var db = new ApplicationDbContext())
+            {
+                ViewBag.LoginsList = db.Users.ToArray();
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -70,12 +76,17 @@ namespace LogisticSolutions.Controllers
         {
             if (!ModelState.IsValid)
             {
+                using (var db = new ApplicationDbContext())
+                {
+                    ViewBag.LoginsList = db.Users.ToArray();
+                }
+
                 return View(model);
             }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -137,6 +148,7 @@ namespace LogisticSolutions.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
+        //[RequireHttps]
         public ActionResult Register()
         {
             return View();
@@ -147,14 +159,19 @@ namespace LogisticSolutions.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        //[RequireHttps]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.UserName + "@none.pl", UserInfo = new UserInfo() {Location =  model.Location}};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    var currentUser = UserManager.FindByName(user.UserName);
+                    var roleresult = UserManager.AddToRole(currentUser.Id, "Customer");
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -402,6 +419,7 @@ namespace LogisticSolutions.Controllers
         {
             return View();
         }
+
 
         protected override void Dispose(bool disposing)
         {
