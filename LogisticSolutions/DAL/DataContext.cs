@@ -7,9 +7,9 @@ using LogisticSolutions.Models;
 
 namespace LogisticSolutions.DAL
 {
-    public class DeliveryContext : DbContext
+    public class DataContext : DbContext, IDataContext
     {
-        public DeliveryContext()
+        public DataContext()
             : base("DefaultConnection")
         {
             
@@ -18,4 +18,6 @@ namespace LogisticSolutions.DAL
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<TrackingStatus> TrackingStatuses { get; set; }
     }
+
+
 }
