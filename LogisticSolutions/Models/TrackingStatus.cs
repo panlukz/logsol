@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LogisticSolutions.Models
 {
@@ -10,8 +11,8 @@ namespace LogisticSolutions.Models
         public string Location { get; set; }
         public TrackingStatusEnum Status { get; set; }
         public string Author { get; set; }
-
-        public string Delivery_Number { get; set; }
+        
+        [Required]
         public Delivery Delivery { get; set; }
     }
 }
