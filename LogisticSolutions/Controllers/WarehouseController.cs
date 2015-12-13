@@ -19,12 +19,12 @@ namespace LogisticSolutions.Controllers
             var userManager =
                 new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = userManager.FindById(currentUserId);
-            return Content("Wyświetlamy wszystkie przesyłki ktore mają status zdane na magazyn z miasta " + currentUser.UserInfo.Location);
+            return Content("Wyświetlamy wszystkie przesyłki ktore mają status zdane na magazyn z miasta {0}", currentUser.UserInfo.Location);
         }
 
         public ActionResult WarehouseReceipt(Delivery delivery)
         {
-            return Content("Przyjecie na magazyn przesylki" + delivery.Number);
+            return Content("Przyjecie na magazyn przesylki {0}", delivery.Number);
         }
 
         public ActionResult WarehouseRelease(Delivery delivery)
