@@ -21,6 +21,9 @@ namespace LogisticSolutions
 
             Database.SetInitializer<ApplicationDbContext>(new IdentityDbInitializer());
 
+            AutofacConfig.RegisterDependencies();
+
+
         }
     }
 }
