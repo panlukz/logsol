@@ -13,14 +13,11 @@ namespace LogisticSolutions.Controllers
 {
     public class DeliveryController : Controller
     {
-        private readonly IDataContext dataContext;
         private readonly IDataFactory dataFactory;
 
         public DeliveryController(IDataContext data, IDataFactory dataFac)
         {
-            dataContext = data;
             dataFactory = dataFac;
-
         }
 
         [Authorize(Roles = "Customer,Courier,Warehouseman,Admin")]
