@@ -13,6 +13,16 @@ namespace LogisticSolutions.Controllers
 {
     public class DeliveryController : Controller
     {
+        private readonly IDataContext dataContext;
+        private readonly IDataFactory dataFactory;
+
+        public DeliveryController(IDataContext data, IDataFactory dataFac)
+        {
+            dataContext = data;
+            dataFactory = dataFac;
+
+        }
+
         [Authorize(Roles = "Customer,Courier,Warehouseman,Admin")]
         public ActionResult AddDelivery()
         {
@@ -37,11 +47,14 @@ namespace LogisticSolutions.Controllers
                 Location = currentUser.UserInfo.Location
             });
 
-            using (DataContext db = new DataContext())
+            using (var dataContext = dataFactory.GetDataContext())
             {
-                db.Deliveries.Add(newDelivery);
-                db.SaveChanges();
+                dataContext.Deliveries.Add(newDelivery);
+                dataContext.SaveChanges();
             }
+
+
+            
 
             return Content("Przesyłka zostanie odebrana z " + newDelivery.PickupAddress.City + " oraz wysłana do " + newDelivery.DestinationAddress.City);
         }
