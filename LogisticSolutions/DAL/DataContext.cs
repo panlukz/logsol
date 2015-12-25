@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 using LogisticSolutions.Models;
 
 namespace LogisticSolutions.DAL
@@ -12,12 +8,9 @@ namespace LogisticSolutions.DAL
         public DataContext()
             : base("DefaultConnection")
         {
-            
         }
 
-        public DbSet<Delivery> Deliveries { get; set; }
-        public DbSet<TrackingStatus> TrackingStatuses { get; set; }
+        public IDbSet<Delivery> Deliveries { get; set; }
+        public IDbSet<TrackingStatus> TrackingStatuses { get; set; }
     }
-
-
 }
