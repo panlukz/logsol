@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LogisticSolutions.DAL;
+using LogisticSolutions.Interfaces;
 using LogisticSolutions.Models;
+using LogisticSolutions.Services;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace LogisticSolutions.Controllers
 {
     public class DeliveryController : Controller
     {
-        private readonly IDataFactory dataFactory;
+        private readonly IDataFactory _dataFactory;
+        private readonly IDeliveryService _deliveryService;
 
-        public DeliveryController(IDataFactory dataFac)
+        public DeliveryController(IDataFactory dataFactory, IDeliveryService deliveryService)
         {
-            dataFactory = dataFac;
+            _dataFactory = dataFactory;
+            _deliveryService = deliveryService;
         }
 
         [Authorize(Roles = "Customer,Courier,Warehouseman,Admin")]
@@ -26,57 +29,31 @@ namespace LogisticSolutions.Controllers
             return View();
         }
 
+
         [Authorize(Roles = "Customer,Admin")]
         [HttpPost]
         public ActionResult AddDelivery(Delivery newDelivery)
         {
-            var currentUserId = User.Identity.GetUserId();
-            var userManager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = userManager.FindById(currentUserId);
+            var result = _deliveryService.RegisterDelivery(newDelivery)
+                ? "Przesyłka zostanie odebrana z " + newDelivery.PickupAddress.City + " oraz wysłana do " +
+                  newDelivery.DestinationAddress.City
+                : "Błąd";
 
-            newDelivery.SenderId = currentUser.Id;
-            newDelivery.Number = Guid.NewGuid().ToString();
-            newDelivery.TrackingHistory.Add(new TrackingStatus()
-            {
-                Author = User.Identity.GetUserId(),
-                DateTime = DateTime.Now,
-                Location = currentUser.UserInfo.Location
-            });
-
-            using (var dataContext = dataFactory.GetDataContext())
-            {
-                dataContext.Deliveries.Add(newDelivery);
-                dataContext.SaveChanges();
-            }
-
-
-            
-
-            return Content("Przesyłka zostanie odebrana z " + newDelivery.PickupAddress.City + " oraz wysłana do " + newDelivery.DestinationAddress.City);
+            return Content(result);
         }
 
         public ActionResult Tracking()
         {
-            List<Delivery> deliveriesList;
-            using (var db = new DataContext())
-            {
-                var userId = User.Identity.GetUserId();
-                deliveriesList = db.Deliveries.Where(d => d.SenderId == userId).Include(e => e.TrackingHistory).ToList();
-            }
-
-            return View(deliveriesList);
+            var deliveries = _deliveryService.GetDeliveries();
+            
+            return View(deliveries);
         }
+
+
 
         public ActionResult TrackingDetails(string id)
         {
-            Delivery delivery;
-
-            using (var db = new DataContext())
-            {
-                var userId = User.Identity.GetUserId();
-                delivery = db.Deliveries.Where(d => d.Number == id).Include(e => e.TrackingHistory).FirstOrDefault();
-            }
+            var delivery = _deliveryService.GetTrackingDetails(id); 
 
             return View(delivery);
         }
