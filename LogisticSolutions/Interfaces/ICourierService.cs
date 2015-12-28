@@ -6,9 +6,14 @@ namespace LogisticSolutions.Interfaces
     public interface ICourierService
     {
         IEnumerable<Delivery> GetReceipts();
-        bool Receipt(Delivery delivery);
-        bool WarehousePick(Delivery delivery);
-        bool WarehousePass(Delivery delivery);
+        
+        bool Reciept(string deliveryId);
+        
+        bool WarehousePick(string deliveryId);
+        
+        bool WarehousePass(string deliveryId);
+
+        bool Deliver(string deliveryId);
 
     }
 }
