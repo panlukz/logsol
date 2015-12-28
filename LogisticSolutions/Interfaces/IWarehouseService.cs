@@ -5,8 +5,8 @@ namespace LogisticSolutions.Interfaces
 {
     public interface IWarehouseService
     {
-        bool WarehouseRelease(Delivery delivery);
-        bool WarehouseReceipt(Delivery delivery);
+        bool WarehouseRelease(string deliveryId);
+        bool WarehouseReceipt(string deliveryId);
         IEnumerable<Delivery> GetAllDeliveries();
     }
 }
