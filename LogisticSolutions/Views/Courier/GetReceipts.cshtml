@@ -22,7 +22,9 @@
             <td>@delivery.PickupAddress.City</td>
             <td>@delivery.PickupAddress.PostalCode</td>
             <td>@Ajax.ActionLink("Zrób odbiór", "Receipt", new {Controller = "Courier", deliveryId = delivery.Number}, new AjaxOptions() {HttpMethod = "POST"})</td>
-            <td>@Ajax.ActionLink("Zdaj na magazyn", "PassToWarehouse", new { Controller = "Courier", deliveryId = delivery.Number }, new AjaxOptions() { HttpMethod = "POST" })</td>
+            <td>@Ajax.ActionLink("Zdaj na magazyn", "PassToWarehouse", new {Controller = "Courier", deliveryId = delivery.Number}, new AjaxOptions() {HttpMethod = "POST"})</td>
+            <td>@Ajax.ActionLink("Pobierz z magazynu", "PickFromWarehouse", new {Controller = "Courier", deliveryId = delivery.Number}, new AjaxOptions() {HttpMethod = "POST"})</td>
+            <td>@Ajax.ActionLink("Wydaj odbiorcy", "Deliver", new { Controller = "Courier", deliveryId = delivery.Number }, new AjaxOptions() { HttpMethod = "POST" })</td>
         </tr>
     }
 </table>
