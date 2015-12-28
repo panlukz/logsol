@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LogisticSolutions.Interfaces;
 using LogisticSolutions.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -12,24 +12,33 @@ namespace LogisticSolutions.Controllers
     [Authorize(Roles = "Warehouseman,Admin")]
     public class WarehouseController : Controller
     {
+        private readonly IWarehouseService _warehouseService;
+
+        public WarehouseController(IWarehouseService warehouseService)
+        {
+            _warehouseService = warehouseService;
+        }
 
         public ActionResult ShowWarehouse()
         {
-            var currentUserId = User.Identity.GetUserId();
-            var userManager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = userManager.FindById(currentUserId);
-            return Content("Wyświetlamy wszystkie przesyłki ktore mają status zdane na magazyn z miasta {0}", currentUser.UserInfo.Location);
+            var deliveriesInWarehouse = _warehouseService.GetAllDeliveries();
+            return Content("Wyświetlamy wszystkie przesyłki ktore mają status zdane na magazyn");
         }
 
         public ActionResult WarehouseReceipt(Delivery delivery)
         {
-            return Content("Przyjecie na magazyn przesylki {0}", delivery.Number);
+            var result = _warehouseService.WarehouseReceipt(delivery) ? string.Format("Przyjecie na magazyn przesylki {0}", delivery.Number) :
+            "Błąd w przyjęciu przesyłki na magazyn!";
+
+            return Content(result);
         }
 
         public ActionResult WarehouseRelease(Delivery delivery)
         {
-            return Content("Warehouse delivery!");
+            var result = _warehouseService.WarehouseRelease(delivery) ? string.Format("Wydanie z magazynu przesylki {0}", delivery.Number) :
+            "Błąd w wydaniu przesyłki z magazynu!";
+
+            return Content(result);
         }
     }
 }
