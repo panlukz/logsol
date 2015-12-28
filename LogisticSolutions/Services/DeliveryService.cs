@@ -13,18 +13,10 @@ using WebGrease.Css.Extensions;
 
 namespace LogisticSolutions.Services
 {
-    public sealed class DeliveryService : IDeliveryService
+    public sealed class DeliveryService : ServiceBase, IDeliveryService
     {
-        private readonly IDataFactory _dataFactory;
-        private readonly ApplicationUser _currentUser;
-
-        public DeliveryService(IDataFactory dataFactory, ApplicationUser user = null)
+        public DeliveryService(IDataFactory dataFactory, ApplicationUser user = null) : base(dataFactory, user)
         {
-            _dataFactory = dataFactory;
-            _currentUser = user ??
-                HttpContext.Current.GetOwinContext()
-                    .GetUserManager<ApplicationUserManager>()
-                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
         public bool RegisterDelivery(Delivery newDelivery)

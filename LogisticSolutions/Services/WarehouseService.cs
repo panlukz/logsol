@@ -9,18 +9,10 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace LogisticSolutions.Services
 {
-    public class WarehouseService : IWarehouseService
+    public class WarehouseService : ServiceBase, IWarehouseService
     {
-        private readonly IDataFactory _dataFactory;
-        private readonly ApplicationUser _currentUser;
-
-        public WarehouseService(IDataFactory dataFactory, ApplicationUser user = null)
+        public WarehouseService(IDataFactory dataFactory, ApplicationUser user = null) : base(dataFactory, user)
         {
-            _dataFactory = dataFactory;
-            _currentUser = user ??
-                           HttpContext.Current.GetOwinContext()
-                               .GetUserManager<ApplicationUserManager>()
-                               .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
         public bool WarehouseRelease(string deliveryId)
