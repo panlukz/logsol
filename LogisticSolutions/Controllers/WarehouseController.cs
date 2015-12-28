@@ -16,7 +16,7 @@ namespace LogisticSolutions.Controllers
         public ActionResult ShowWarehouse()
         {
             var deliveriesInWarehouse = _warehouseService.GetAllDeliveries();
-            return Content("Wyświetlamy wszystkie przesyłki ktore mają status zdane na magazyn");
+            return View(deliveriesInWarehouse);
         }
 
         public ActionResult WarehouseReceipt(string deliveryId)

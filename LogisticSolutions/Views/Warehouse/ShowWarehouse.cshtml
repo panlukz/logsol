@@ -1,0 +1,28 @@
+﻿@model System.Collections.Generic.IEnumerable<LogisticSolutions.Models.Delivery>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Przesyłki na magazynie:</h2>
+
+<table>
+    @foreach (var delivery in Model)
+    {
+        <tr>
+            <th>Nr przesyłki:</th>
+            <th>Adres:</th>
+            <th>Miasto:</th>
+            <th>Kod pocztowy:</th>
+            <th>Akcja:</th>
+        </tr>
+        <tr>
+            <td>@delivery.Number</td>
+            <td>@delivery.PickupAddress.AddressLine1 @delivery.PickupAddress.AddressLine2</td>
+            <td>@delivery.PickupAddress.City</td>
+            <td>@delivery.PickupAddress.PostalCode</td>
+            <td>@Ajax.ActionLink("Przyjmij", "WarehouseReceipt", new { Controller = "Warehouse", deliveryId = delivery.Number }, new AjaxOptions() { HttpMethod = "POST" })</td>
+            <td>@Ajax.ActionLink("Wydaj...", "WarehouseRelease", new { Controller = "Warehouse", deliveryId = delivery.Number }, new AjaxOptions() { HttpMethod = "POST" })</td>
+        </tr>
+    }
+</table>

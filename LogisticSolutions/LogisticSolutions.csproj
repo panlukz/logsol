@@ -194,6 +194,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CourierService.cs" />
     <Compile Include="Services\DeliveryService.cs" />
+    <Compile Include="Services\WarehouseService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -265,10 +266,10 @@
     <Content Include="Views\Shared\CustomerMenu.cshtml" />
     <Content Include="Views\Delivery\TrackingDetails.cshtml" />
     <Content Include="Views\Courier\GetReceipts.cshtml" />
+    <Content Include="Views\Warehouse\ShowWarehouse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Warehouse\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
