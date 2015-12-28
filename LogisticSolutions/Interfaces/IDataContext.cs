@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using LogisticSolutions.Models;
 
-namespace LogisticSolutions.DAL
+namespace LogisticSolutions.Interfaces
 {
     public interface IDataContext : IDisposable
     {
