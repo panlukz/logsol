@@ -25,8 +25,8 @@ namespace LogisticSolutions.Controllers
         public ActionResult AddDelivery(Delivery newDelivery)
         {
             var result = _deliveryService.RegisterDelivery(newDelivery)
-                ? "Przesyłka zostanie odebrana z " + newDelivery.PickupAddress.City + " oraz wysłana do " +
-                  newDelivery.DestinationAddress.City
+                ? string.Format("Przesyłka zostanie odebrana z {0} oraz wysłana do {1}", newDelivery.PickupAddress.City,
+                    newDelivery.DestinationAddress.City)
                 : "Błąd";
 
             return Content(result);
@@ -35,15 +35,14 @@ namespace LogisticSolutions.Controllers
         public ActionResult Tracking()
         {
             var deliveries = _deliveryService.GetDeliveries();
-            
+
             return View(deliveries);
         }
 
 
-
         public ActionResult TrackingDetails(string id)
         {
-            var delivery = _deliveryService.GetTrackingDetails(id); 
+            var delivery = _deliveryService.GetTrackingDetails(id);
 
             return View(delivery);
         }
