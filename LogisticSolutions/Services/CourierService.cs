@@ -78,7 +78,7 @@ namespace LogisticSolutions.Services
                     {
                         Author = _currentUser.Id,
                         DateTime = DateTime.Now,
-                        Status = TrackingStatusEnum.WarehouseReceipt,
+                        Status = TrackingStatusEnum.WarehousePass,
                         Location = _currentUser.UserInfo.Location
                     });
                 db.SaveChanges();

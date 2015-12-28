@@ -9,6 +9,7 @@ namespace LogisticSolutions.Models
     {
         RegistredInSystem,
         PickedUpFromSender,
+        WarehousePass,
         WarehouseReceipt,
         WarehouseRelease,
         InDelivery,
