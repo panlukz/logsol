@@ -1,11 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using LogisticSolutions.Interfaces;
-using LogisticSolutions.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LogisticSolutions.Controllers
 {
