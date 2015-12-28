@@ -17,6 +17,7 @@ namespace LogisticSolutions
             builder.RegisterType<DataFactory>().As<IDataFactory>().InstancePerRequest();
             builder.RegisterType<DeliveryService>().As<IDeliveryService>().InstancePerRequest();
             builder.RegisterType<CourierService>().As<ICourierService>().InstancePerRequest();
+            builder.RegisterType<WarehouseService>().As<IWarehouseService>().InstancePerRequest();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
         } 
