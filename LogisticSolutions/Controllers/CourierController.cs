@@ -22,36 +22,46 @@ namespace LogisticSolutions.Controllers
         {
             var receipts = _courierService.GetReceipts();
 
-            return Content("Wyswietlamy wszystkie odbiory!");
+            return View(receipts);
         }
 
         [Authorize(Roles = "Courier, Admin")]
         [HttpPost]
-        public ActionResult Receipt(Delivery delivery)
+        public ActionResult Receipt(string deliveryId)
         {
-            var result = _courierService.Receipt(delivery) ? "Odbior zrobiony!" : "Bład w obiorze";
+            var result = _courierService.Reciept(deliveryId) ? "Odbior zrobiony!" : "Bład w obiorze";
 
             return Content(result);
         }
 
         [Authorize(Roles = "Courier, Admin")]
         [HttpPost]
-        public ActionResult PassToWarehouse(Delivery delivery)
+        public ActionResult PassToWarehouse(string deliveryId)
         {
-            var result = _courierService.WarehousePass(delivery) ? "Przekazanie na magazyn udane!" : "Bład w przekazaniu na magazyn";
+            var result = _courierService.WarehousePass(deliveryId) ? "Przekazanie na magazyn udane!" : "Bład w przekazaniu na magazyn";
 
             return Content(result);
         }
 
         [Authorize(Roles = "Courier, Admin")]
         [HttpPost]
-        public ActionResult PickFromWarehouse(Delivery delivery)
+        public ActionResult PickFromWarehouse(string deliveryId)
         {
 
-            var result = _courierService.WarehousePick(delivery) ? "Pobrano przesyłkę z magazynu!" : "Bład w pobraniu przesyłki z magazynu";
+            var result = _courierService.WarehousePick(deliveryId) ? "Pobrano przesyłkę z magazynu!" : "Bład w pobraniu przesyłki z magazynu";
 
             return Content(result);
         }
+
+        [Authorize(Roles = "Courier, Admin")]
+        [HttpPost]
+        public ActionResult Deliver(string deliveryId)
+        {
+            var result = _courierService.Deliver(deliveryId) ? "Pobrano przesyłkę z magazynu!" : "Bład w pobraniu przesyłki z magazynu";
+
+            return Content(result);
+        }
+        
 
     }
 }
