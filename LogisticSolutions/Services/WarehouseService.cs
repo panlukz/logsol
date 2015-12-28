@@ -62,7 +62,11 @@ namespace LogisticSolutions.Services
             {
                 //TODO need to change that. maybe add some properties to delivery class. something like ActualLocation.
                 //in this situation warehousemans sees deliveries from thiers cities only.
-                deliveries = db.Deliveries.Where(del => del.PickupAddress.City == _currentUser.UserInfo.Location).ToList();
+                deliveries =
+                    db.Deliveries.Where(
+                        del =>
+                            del.ActualTrackingStatus.Location == _currentUser.UserInfo.Location &&
+                            del.PickupAddress.City == _currentUser.UserInfo.Location).ToList();
             }
 
             return deliveries;
