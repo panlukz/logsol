@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using LogisticSolutions.Interfaces;
 using LogisticSolutions.Models;
 
 namespace LogisticSolutions.DAL
