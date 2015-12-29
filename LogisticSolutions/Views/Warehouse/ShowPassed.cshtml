@@ -4,7 +4,7 @@
     ViewBag.Title = "title";
 }
 
-<h2>Przesyłki na magazynie:</h2>
+<h2>Przesyłki do przyjęcia:</h2>
 
 <table>
     @foreach (var delivery in Model)
@@ -21,7 +21,7 @@
             <td>@delivery.PickupAddress.AddressLine1 @delivery.PickupAddress.AddressLine2</td>
             <td>@delivery.PickupAddress.City</td>
             <td>@delivery.PickupAddress.PostalCode</td>
-            <td>@Ajax.ActionLink("Wydaj z magazynu", "WarehouseRelease", new { Controller = "Warehouse", deliveryId = delivery.Number }, new AjaxOptions() { HttpMethod = "POST" })</td>
+            <td>@Ajax.ActionLink("Przyjmij", "WarehouseReceipt", new { Controller = "Warehouse", deliveryId = delivery.Number }, new AjaxOptions() { HttpMethod = "POST" })</td>
         </tr>
     }
 </table>

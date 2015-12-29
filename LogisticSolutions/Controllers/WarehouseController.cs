@@ -19,6 +19,12 @@ namespace LogisticSolutions.Controllers
             return View(deliveriesInWarehouse);
         }
 
+        public ActionResult ShowPassed()
+        {
+            var passedDeliveries = _warehouseService.GetPassedDeliveries();
+            return View(passedDeliveries);
+        }
+
         public ActionResult WarehouseReceipt(string deliveryId)
         {
             var result = _warehouseService.WarehouseReceipt(deliveryId) ? string.Format("Przyjecie na magazyn przesylki {0}", deliveryId) :
