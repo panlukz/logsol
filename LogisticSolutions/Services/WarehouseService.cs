@@ -17,53 +17,41 @@ namespace LogisticSolutions.Services
 
         public bool WarehouseRelease(string deliveryId)
         {
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 var delivery = db.Deliveries.FirstOrDefault(del => del.Number == deliveryId);
-                delivery.TrackingHistory.Add(
-                    new TrackingStatus()
-                    {
-                        Author = _currentUser.Id,
-                        DateTime = DateTime.Now,
-                        Status = TrackingStatusEnum.WarehouseRelease,
-                        Location = _currentUser.UserInfo.Location
-                    });
 
+                if (delivery == null) return false;
+
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehouseRelease));
                 db.SaveChanges();
+                return true;
             }
-
-            return true;
         }
 
         public bool WarehouseReceipt(string deliveryId)
         {
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 var delivery = db.Deliveries.FirstOrDefault(del => del.Number == deliveryId);
-                delivery.TrackingHistory.Add(
-                    new TrackingStatus()
-                    {
-                        Author = _currentUser.Id,
-                        DateTime = DateTime.Now,
-                        Status = TrackingStatusEnum.WarehouseReceipt,
-                        Location = _currentUser.UserInfo.Location
-                    });
 
+                if (delivery == null) return false;
+
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehouseReceipt));
                 db.SaveChanges();
+                return true;
             }
-
-            return true;
         }
 
         public IEnumerable<Delivery> GetRecievedDeliveries()
         {
             IEnumerable<Delivery> deliveries;
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 deliveries =
                     db.Deliveries.Where(
                         del =>
-                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Location == _currentUser.UserInfo.Location &&
+                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location &&
                             del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status == TrackingStatusEnum.WarehouseReceipt).ToList();
             }
 

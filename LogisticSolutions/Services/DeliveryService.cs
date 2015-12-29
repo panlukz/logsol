@@ -21,16 +21,11 @@ namespace LogisticSolutions.Services
 
         public bool RegisterDelivery(Delivery newDelivery)
         {
-            newDelivery.SenderId = _currentUser.Id;
+            newDelivery.SenderId = CurrentUser.Id;
             newDelivery.Number = Guid.NewGuid().ToString();
-            newDelivery.TrackingHistory.Add(new TrackingStatus()
-            {
-                Author = _currentUser.Id,
-                DateTime = DateTime.Now,
-                Location = _currentUser.UserInfo.Location
-            });
+            newDelivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.RegistredInSystem));
 
-            using (var dataContext = _dataFactory.GetDataContext())
+            using (var dataContext = DataFactory.GetDataContext())
             {
                 dataContext.Deliveries.Add(newDelivery);
                 dataContext.SaveChanges();
@@ -43,10 +38,10 @@ namespace LogisticSolutions.Services
         {
             IEnumerable<Delivery> deliveries;
 
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 deliveries =
-                    db.Deliveries.Where(d => d.SenderId == _currentUser.Id).Include(e => e.TrackingHistory).ToList();
+                    db.Deliveries.Where(d => d.SenderId == CurrentUser.Id).Include(e => e.TrackingHistory).ToList();
             }
             return deliveries;
         }
@@ -55,7 +50,7 @@ namespace LogisticSolutions.Services
         {
             Delivery delivery;
 
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 delivery = db.Deliveries.Where(d => d.Number == id).Include(e => e.TrackingHistory).FirstOrDefault();
             }

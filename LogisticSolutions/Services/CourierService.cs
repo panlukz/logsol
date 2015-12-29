@@ -21,10 +21,10 @@ namespace LogisticSolutions.Services
         {
             IEnumerable<Delivery> reciepts;
             
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 //with commented line query will show deliveries with RegistredInSystem status only!
-                reciepts = db.Deliveries.Where(del => del.PickupAddress.City == _currentUser.UserInfo.Location
+                reciepts = db.Deliveries.Where(del => del.PickupAddress.City == CurrentUser.UserInfo.Location
                                            /*&& del.TrackingHistory.Count == 1*/).ToList();
             }
 
@@ -33,77 +33,58 @@ namespace LogisticSolutions.Services
 
         public bool Reciept(string deliveryId)
         {
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 var delivery = db.Deliveries.FirstOrDefault(del => del.Number == deliveryId);
-                delivery.TrackingHistory.Add(
-                    new TrackingStatus()
-                    {   Author = _currentUser.Id,
-                        DateTime = DateTime.Now, 
-                        Status = TrackingStatusEnum.PickedUpFromSender,
-                        Location = _currentUser.UserInfo.Location
-                    });
 
+                if (delivery == null) return false;
+
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.PickedUpFromSender));
                 db.SaveChanges();
+                return true;
             }
-
-            return true;
         }
 
         public bool WarehousePick(string deliveryId)
         {
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 var delivery = db.Deliveries.FirstOrDefault(del => del.Number == deliveryId);
-                delivery.TrackingHistory.Add(
-                    new TrackingStatus()
-                    {
-                        Author = _currentUser.Id,
-                        DateTime = DateTime.Now,
-                        Status = TrackingStatusEnum.InDelivery,
-                        Location = _currentUser.UserInfo.Location
-                    });
+
+                if (delivery == null) return false;
+
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.InDelivery));
                 db.SaveChanges();
-            }
-            return true;
+                return true;
+            }    
         }
 
         public bool WarehousePass(string deliveryId)
         {
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 var delivery = db.Deliveries.FirstOrDefault(del => del.Number == deliveryId);
-                delivery.TrackingHistory.Add(
-                    new TrackingStatus()
-                    {
-                        Author = _currentUser.Id,
-                        DateTime = DateTime.Now,
-                        Status = TrackingStatusEnum.WarehousePass,
-                        Location = _currentUser.UserInfo.Location
-                    });
-                db.SaveChanges();
-            }
+                
+                if (delivery == null) return false;
 
-            return true;
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehousePass));
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool Deliver(string deliveryId)
         {
-            using (var db = _dataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
                 var delivery = db.Deliveries.FirstOrDefault(del => del.Number == deliveryId);
-                delivery.TrackingHistory.Add(
-                    new TrackingStatus()
-                    {
-                        Author = _currentUser.Id,
-                        DateTime = DateTime.Now,
-                        Status = TrackingStatusEnum.Delivered,
-                        Location = _currentUser.UserInfo.Location
-                    });
-                db.SaveChanges();
-            }
 
-            return true;
+                if (delivery == null) return false;
+
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.Delivered));
+                db.SaveChanges();
+                return true;
+            }
         }
     }
 }
