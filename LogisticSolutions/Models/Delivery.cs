@@ -23,14 +23,6 @@ namespace LogisticSolutions.Models
 
         public PostalAddress DestinationAddress { get; set; }
 
-        public TrackingStatus ActualTrackingStatus
-        {
-            get
-            {
-                return TrackingHistory.Count > 0 ? TrackingHistory.LastOrDefault() : null;
-            }
-        }
-
         public virtual ICollection<TrackingStatus> TrackingHistory { get; private set; }
     }
 }
