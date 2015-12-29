@@ -43,9 +43,9 @@ namespace LogisticSolutions.Services
                 deliveries =
                     db.Deliveries.Where(
                         del =>
-                            del.PickupAddress.City == CurrentUser.UserInfo.Location &&
-                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status ==
-                            TrackingStatusEnum.WarehouseReceipt).ToList();
+                            del.TrackingHistory.Where(x => x.Status == TrackingStatusEnum.WarehouseReceipt)
+                                .OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location &&
+                            del.DestinationAddress.City == CurrentUser.UserInfo.Location).ToList();
             }
 
             return deliveries;
