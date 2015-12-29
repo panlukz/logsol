@@ -23,12 +23,32 @@ namespace LogisticSolutions.Services
             
             using (var db = DataFactory.GetDataContext())
             {
-                //with commented line query will show deliveries with RegistredInSystem status only!
-                reciepts = db.Deliveries.Where(del => del.PickupAddress.City == CurrentUser.UserInfo.Location
-                                           /*&& del.TrackingHistory.Count == 1*/).ToList();
+                reciepts =
+                    db.Deliveries.Where(
+                        del =>
+                            del.PickupAddress.City == CurrentUser.UserInfo.Location &&
+                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status ==
+                            TrackingStatusEnum.RegistredInSystem).ToList();
             }
 
             return reciepts;
+        }
+
+        public IEnumerable<Delivery> GetDeliveries()
+        {
+            IEnumerable<Delivery> deliveries;
+
+            using (var db = DataFactory.GetDataContext())
+            {
+                deliveries =
+                    db.Deliveries.Where(
+                        del =>
+                            del.PickupAddress.City == CurrentUser.UserInfo.Location &&
+                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status ==
+                            TrackingStatusEnum.WarehouseReceipt).ToList();
+            }
+
+            return deliveries;
         }
 
         public bool Reciept(string deliveryId)

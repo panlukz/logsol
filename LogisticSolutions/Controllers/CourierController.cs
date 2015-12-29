@@ -25,6 +25,15 @@ namespace LogisticSolutions.Controllers
             return View(receipts);
         }
 
+        // GET: Courier
+        [Authorize(Roles = "Courier, Admin")]
+        public ActionResult GetDeliveries()
+        {
+            var receipts = _courierService.GetDeliveries();
+
+            return View(receipts);
+        }
+
         [Authorize(Roles = "Courier, Admin")]
         [HttpPost]
         public ActionResult Receipt(string deliveryId)

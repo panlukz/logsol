@@ -269,6 +269,7 @@
     <Content Include="Views\Courier\GetReceipts.cshtml" />
     <Content Include="Views\Warehouse\ShowWarehouse.cshtml" />
     <Content Include="Views\Warehouse\ShowPassed.cshtml" />
+    <Content Include="Views\Courier\GetDeliveries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
