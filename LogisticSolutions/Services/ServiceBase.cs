@@ -21,14 +21,14 @@ namespace LogisticSolutions.Services
                                .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
-        protected TrackingStatus GenerateTrackingPoint(TrackingStatusEnum status)
+        protected TrackingStatus GenerateTrackingPoint(TrackingStatusEnum status, string location=null)
         {
             return new TrackingStatus()
             {
                 Author = CurrentUser.Id,
                 DateTime = DateTime.Now,
                 Status = status,
-                Location = CurrentUser.UserInfo.Location
+                Location = location ?? CurrentUser.UserInfo.Location
             };
         }
     }

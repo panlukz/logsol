@@ -24,6 +24,9 @@ namespace LogisticSolutions.Services
                 if (delivery == null) return false;
 
                 delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehouseRelease));
+
+                //TODO It's temporary until I will do something with passing deliveries between warehouses
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehousePass, delivery.DestinationAddress.City));
                 db.SaveChanges();
                 return true;
             }
