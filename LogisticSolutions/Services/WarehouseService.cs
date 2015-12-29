@@ -60,13 +60,11 @@ namespace LogisticSolutions.Services
             IEnumerable<Delivery> deliveries;
             using (var db = _dataFactory.GetDataContext())
             {
-                //TODO need to change that. maybe add some properties to delivery class. something like ActualLocation.
-                //in this situation warehousemans sees deliveries from thiers cities only.
                 deliveries =
                     db.Deliveries.Where(
                         del =>
-                            del.ActualTrackingStatus.Location == _currentUser.UserInfo.Location &&
-                            del.PickupAddress.City == _currentUser.UserInfo.Location).ToList();
+                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Location == _currentUser.UserInfo.Location &&
+                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status == TrackingStatusEnum.WarehouseReceipt).ToList();
             }
 
             return deliveries;
