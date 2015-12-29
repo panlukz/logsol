@@ -55,7 +55,7 @@ namespace LogisticSolutions.Services
             return true;
         }
 
-        public IEnumerable<Delivery> GetAllDeliveries()
+        public IEnumerable<Delivery> GetRecievedDeliveries()
         {
             IEnumerable<Delivery> deliveries;
             using (var db = _dataFactory.GetDataContext())

@@ -15,7 +15,7 @@ namespace LogisticSolutions.Controllers
 
         public ActionResult ShowWarehouse()
         {
-            var deliveriesInWarehouse = _warehouseService.GetAllDeliveries();
+            var deliveriesInWarehouse = _warehouseService.GetRecievedDeliveries();
             return View(deliveriesInWarehouse);
         }
 

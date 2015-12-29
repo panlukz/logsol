@@ -7,6 +7,6 @@ namespace LogisticSolutions.Interfaces
     {
         bool WarehouseRelease(string deliveryId);
         bool WarehouseReceipt(string deliveryId);
-        IEnumerable<Delivery> GetAllDeliveries();
+        IEnumerable<Delivery> GetRecievedDeliveries();
     }
 }
