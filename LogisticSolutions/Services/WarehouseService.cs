@@ -43,6 +43,21 @@ namespace LogisticSolutions.Services
             }
         }
 
+        public IEnumerable<Delivery> GetPassedDeliveries()
+        {
+            IEnumerable<Delivery> deliveries;
+            using (var db = DataFactory.GetDataContext())
+            {
+                deliveries =
+                    db.Deliveries.Where(
+                        del =>
+                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location &&
+                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status == TrackingStatusEnum.WarehousePass).ToList();
+            }
+
+            return deliveries;
+        }
+
         public IEnumerable<Delivery> GetRecievedDeliveries()
         {
             IEnumerable<Delivery> deliveries;
