@@ -25,12 +25,14 @@ namespace LogisticSolutions.Services
             
             using (var db = DataFactory.GetDataContext())
             {
+                //Wyswietla odbiory czyli takie które maj¹ ostatni status jako RegistredInSystem
+                //i ten PickUpCity jest miastem zalogowanego kuriera
                 reciepts =
                     db.Deliveries.Where(
                         del =>
                             del.PickupAddress.City == CurrentUser.UserInfo.Location &&
-                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status ==
-                            TrackingStatus.RegistredInSystem).ToList();
+                            del.TrackingHistory.OrderByDescending(x => x.Id).FirstOrDefault().Status == TrackingStatus.RegistredInSystem
+                            ).ToList();
             }
 
             return reciepts;
@@ -42,12 +44,15 @@ namespace LogisticSolutions.Services
 
             using (var db = DataFactory.GetDataContext())
             {
+                //Wyœwietla przesy³ki do  dostarczenia. Czyli ostatni status to WareHouseReciept
+                //w miescie tym samym co DestinationCity i tym samym co maisto zalogowanego kuriera.
                 deliveries =
                     db.Deliveries.Where(
                         del =>
-                            del.TrackingHistory.Where(x => x.Status == TrackingStatus.WarehouseReceipt)
-                                .OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location &&
-                            del.DestinationAddress.City == CurrentUser.UserInfo.Location).ToList();
+                            del.DestinationAddress.City == CurrentUser.UserInfo.Location &&
+                            del.TrackingHistory.OrderByDescending(x => x.Id).FirstOrDefault().Status == TrackingStatus.WarehouseReceipt &&
+                            del.TrackingHistory.OrderByDescending(x => x.Id).FirstOrDefault().Location == CurrentUser.UserInfo.Location
+                            ).ToList();
             }
 
             return deliveries;
