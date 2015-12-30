@@ -1,4 +1,5 @@
 ﻿using System;
+using LogisticSolutions.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -6,6 +7,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using LogisticSolutions.Models;
+using LogisticSolutions.Models.Users;
 
 namespace LogisticSolutions
 {

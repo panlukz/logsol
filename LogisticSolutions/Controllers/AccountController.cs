@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using LogisticSolutions.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LogisticSolutions.Models;
+using LogisticSolutions.Models.Users;
 
 namespace LogisticSolutions.Controllers
 {

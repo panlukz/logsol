@@ -5,6 +5,7 @@ using System.Web;
 using LogisticSolutions.DAL;
 using LogisticSolutions.Interfaces;
 using LogisticSolutions.Models;
+using LogisticSolutions.Models.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
