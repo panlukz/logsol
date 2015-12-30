@@ -6,6 +6,6 @@
 <ul>
     @foreach (TrackingHistoryPoint status in Model.TrackingHistory)
     {
-        <li>@status.DateTime | @status.Location | @status.Status.GetDisplayName() | @status.Author</li>
+        <li>@status.Id | @status.DateTime | @status.Location | @status.Status.GetDisplayName() | @status.Author</li>
     }  
 </ul>
