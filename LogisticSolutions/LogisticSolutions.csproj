@@ -173,11 +173,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
+    <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\DataContext.cs" />
     <Compile Include="DAL\DataFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Interfaces\ICourierService.cs" />
     <Compile Include="Interfaces\IDataContext.cs" />
     <Compile Include="Interfaces\IDataFactory.cs" />
@@ -185,12 +187,12 @@
     <Compile Include="Interfaces\IWarehouseService.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Delivery.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostalAddress.cs" />
+    <Compile Include="Models\TrackingHistoryPoint.cs" />
     <Compile Include="Models\TrackingStatus.cs" />
-    <Compile Include="Models\TrackingStatusEnum.cs" />
     <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\Users\ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CourierService.cs" />
     <Compile Include="Services\DeliveryService.cs" />
