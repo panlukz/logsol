@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using LogisticSolutions.Interfaces;
 using LogisticSolutions.Models;
+using LogisticSolutions.Models.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
@@ -21,9 +22,9 @@ namespace LogisticSolutions.Services
                                .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
-        protected TrackingStatus GenerateTrackingPoint(TrackingStatusEnum status, string location=null)
+        protected TrackingHistoryPoint GenerateTrackingPoint(TrackingStatus status, string location=null)
         {
-            return new TrackingStatus()
+            return new TrackingHistoryPoint()
             {
                 Author = CurrentUser.Id,
                 DateTime = DateTime.Now,

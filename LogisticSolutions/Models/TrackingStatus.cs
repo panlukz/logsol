@@ -3,16 +3,28 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LogisticSolutions.Models
 {
-    public class TrackingStatus
+    public enum TrackingStatus
     {
-        public int Id { get; set; }
+        [Display(Name = "Zarejestrowano w systemie")]
+        RegistredInSystem,
 
-        public DateTime DateTime { get; set; }
-        public string Location { get; set; }
-        public TrackingStatusEnum Status { get; set; }
-        public string Author { get; set; }
-        
-        [Required]
-        public Delivery Delivery { get; set; }
+        [Display(Name = "Odebrano od nadawcy")]
+        PickedUpFromSender,
+
+        [Display(Name = "Przekazanie na magazyn")]
+        WarehousePass,
+
+        [Display(Name = "Odbiór na magazynie")]
+        WarehouseReceipt,
+
+        [Display(Name = "Wydanie z magazynu")]
+        WarehouseRelease,
+
+        [Display(Name = "W dostawie")]
+        InDelivery,
+
+        [Display(Name = "Dostarczono")]
+        Delivered
+
     }
 }
