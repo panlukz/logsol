@@ -24,10 +24,10 @@ namespace LogisticSolutions.Services
 
                 if (delivery == null) return false;
 
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehouseRelease));
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.WarehouseRelease));
 
                 //TODO It's temporary until I will do something with passing deliveries between warehouses
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehousePass, delivery.DestinationAddress.City));
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.WarehousePass, delivery.DestinationAddress.City));
                 db.SaveChanges();
                 return true;
             }
@@ -41,7 +41,7 @@ namespace LogisticSolutions.Services
 
                 if (delivery == null) return false;
 
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehouseReceipt));
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.WarehouseReceipt));
                 db.SaveChanges();
                 return true;
             }
@@ -55,7 +55,7 @@ namespace LogisticSolutions.Services
                 deliveries =
                     db.Deliveries.Where(
                         del =>
-                            del.TrackingHistory.Where(x => x.Status == TrackingStatusEnum.WarehousePass).OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location).ToList();
+                            del.TrackingHistory.Where(x => x.Status == TrackingStatus.WarehousePass).OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location).ToList();
             }
 
             return deliveries;
@@ -70,7 +70,7 @@ namespace LogisticSolutions.Services
                     db.Deliveries.Where(
                         del =>
                             del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location &&
-                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status == TrackingStatusEnum.WarehouseReceipt).ToList();
+                            del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status == TrackingStatus.WarehouseReceipt).ToList();
             }
 
             return deliveries;

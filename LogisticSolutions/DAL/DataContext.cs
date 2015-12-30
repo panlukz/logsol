@@ -12,6 +12,6 @@ namespace LogisticSolutions.DAL
         }
 
         public IDbSet<Delivery> Deliveries { get; set; }
-        public IDbSet<TrackingStatus> TrackingStatuses { get; set; }
+        public IDbSet<TrackingHistoryPoint> TrackingHistoryPoints { get; set; }
     }
 }

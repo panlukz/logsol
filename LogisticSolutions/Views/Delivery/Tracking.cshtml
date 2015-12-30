@@ -15,7 +15,7 @@
             <th>Miasto doręczenia:</th>
         </tr>
         <tr>
-            <td>@delivery.TrackingHistory.Where(t => t.Status == TrackingStatusEnum.RegistredInSystem).FirstOrDefault().DateTime</td>
+            <td>@delivery.TrackingHistory.Where(t => t.Status == TrackingStatus.RegistredInSystem).FirstOrDefault().DateTime</td>
             <td>@delivery.PickupAddress.City</td>
             <td>@delivery.DestinationAddress.City</td>
             <td>@Html.ActionLink("Więcej informacji...", "TrackingDetails", new {Controller ="Delivery", id = delivery.Number })</td>

@@ -8,7 +8,7 @@ namespace LogisticSolutions.Models
         [Display(Name = "Zarejestrowano w systemie")]
         RegistredInSystem,
 
-        [Display(Name = "Odebrano od nadawcy")]
+        [Display(Name = "Odbiór od nadawcy")]
         PickedUpFromSender,
 
         [Display(Name = "Przekazanie na magazyn")]
@@ -20,10 +20,10 @@ namespace LogisticSolutions.Models
         [Display(Name = "Wydanie z magazynu")]
         WarehouseRelease,
 
-        [Display(Name = "W dostawie")]
+        [Display(Name = "W doręczeniu")]
         InDelivery,
 
-        [Display(Name = "Dostarczono")]
+        [Display(Name = "Doręczono")]
         Delivered
 
     }

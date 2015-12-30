@@ -24,7 +24,7 @@ namespace LogisticSolutions.Services
         {
             newDelivery.SenderId = CurrentUser.Id;
             newDelivery.Number = Guid.NewGuid().ToString();
-            newDelivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.RegistredInSystem));
+            newDelivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.RegistredInSystem));
 
             using (var dataContext = DataFactory.GetDataContext())
             {

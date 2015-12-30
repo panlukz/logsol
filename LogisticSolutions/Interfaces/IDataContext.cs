@@ -7,7 +7,7 @@ namespace LogisticSolutions.Interfaces
     public interface IDataContext : IDisposable
     {
         IDbSet<Delivery> Deliveries { get; set; }
-        IDbSet<TrackingStatus> TrackingStatuses { get; set; }
+        IDbSet<TrackingHistoryPoint> TrackingHistoryPoints { get; set; }
 
         int SaveChanges();
     }

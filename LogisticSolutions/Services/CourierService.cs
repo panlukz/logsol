@@ -29,7 +29,7 @@ namespace LogisticSolutions.Services
                         del =>
                             del.PickupAddress.City == CurrentUser.UserInfo.Location &&
                             del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status ==
-                            TrackingStatusEnum.RegistredInSystem).ToList();
+                            TrackingStatus.RegistredInSystem).ToList();
             }
 
             return reciepts;
@@ -44,7 +44,7 @@ namespace LogisticSolutions.Services
                 deliveries =
                     db.Deliveries.Where(
                         del =>
-                            del.TrackingHistory.Where(x => x.Status == TrackingStatusEnum.WarehouseReceipt)
+                            del.TrackingHistory.Where(x => x.Status == TrackingStatus.WarehouseReceipt)
                                 .OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location &&
                             del.DestinationAddress.City == CurrentUser.UserInfo.Location).ToList();
             }
@@ -60,7 +60,7 @@ namespace LogisticSolutions.Services
 
                 if (delivery == null) return false;
 
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.PickedUpFromSender));
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.PickedUpFromSender));
                 db.SaveChanges();
                 return true;
             }
@@ -74,7 +74,7 @@ namespace LogisticSolutions.Services
 
                 if (delivery == null) return false;
 
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.InDelivery));
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.InDelivery));
                 db.SaveChanges();
                 return true;
             }    
@@ -88,7 +88,7 @@ namespace LogisticSolutions.Services
                 
                 if (delivery == null) return false;
 
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.WarehousePass));
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.WarehousePass));
                 db.SaveChanges();
                 return true;
             }
@@ -102,7 +102,7 @@ namespace LogisticSolutions.Services
 
                 if (delivery == null) return false;
 
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatusEnum.Delivered));
+                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.Delivered));
                 db.SaveChanges();
                 return true;
             }

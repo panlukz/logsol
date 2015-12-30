@@ -11,7 +11,7 @@ namespace LogisticSolutions.Models
     {
         public Delivery()
         {
-            TrackingHistory = new HashSet<TrackingStatus>();
+            TrackingHistory = new HashSet<TrackingHistoryPoint>();
         }
 
         [Key]
@@ -23,6 +23,6 @@ namespace LogisticSolutions.Models
 
         public PostalAddress DestinationAddress { get; set; }
 
-        public virtual ICollection<TrackingStatus> TrackingHistory { get; private set; }
+        public virtual ICollection<TrackingHistoryPoint> TrackingHistory { get; private set; }
     }
 }
