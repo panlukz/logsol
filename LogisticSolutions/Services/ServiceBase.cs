@@ -13,13 +13,14 @@ namespace LogisticSolutions.Services
         protected readonly IDataFactory DataFactory;
         protected readonly ApplicationUser CurrentUser;
 
-        protected ServiceBase(IDataFactory dataFactory, ApplicationUser user = null)
+        protected ServiceBase(IDataFactory dataFactory, HttpContextBase httpContext)
         {
             DataFactory = dataFactory;
-            CurrentUser = user ??
-                           HttpContext.Current.GetOwinContext()
-                               .GetUserManager<ApplicationUserManager>()
-                               .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            CurrentUser = httpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+//            CurrentUser = user ??
+//                           HttpContext.Current.GetOwinContext()
+//                               .GetUserManager<ApplicationUserManager>()
+//                               .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
         protected TrackingHistoryPoint GenerateTrackingPoint(TrackingStatus status, string location=null)

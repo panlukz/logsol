@@ -13,8 +13,9 @@ namespace LogisticSolutions.Services
 {
     public class CourierService : ServiceBase, ICourierService
     {
-        
-        public CourierService(IDataFactory dataFactory, ApplicationUser user = null) : base(dataFactory, user)
+
+        public CourierService(IDataFactory dataFactory, HttpContextBase httpContext)
+            : base(dataFactory, httpContext)
         {
         }
 

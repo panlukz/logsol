@@ -12,7 +12,7 @@ namespace LogisticSolutions.Services
 {
     public class WarehouseService : ServiceBase, IWarehouseService
     {
-        public WarehouseService(IDataFactory dataFactory, ApplicationUser user = null) : base(dataFactory, user)
+        public WarehouseService(IDataFactory dataFactory, HttpContextBase httpContext) : base(dataFactory, httpContext)
         {
         }
 

@@ -16,7 +16,8 @@ namespace LogisticSolutions.Services
 {
     public sealed class DeliveryService : ServiceBase, IDeliveryService
     {
-        public DeliveryService(IDataFactory dataFactory, ApplicationUser user = null) : base(dataFactory, user)
+        public DeliveryService(IDataFactory dataFactory, HttpContextBase httpContext)
+            : base(dataFactory, httpContext)
         {
         }
 

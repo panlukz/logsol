@@ -13,6 +13,8 @@ namespace LogisticSolutions
         public static void RegisterDependencies()
         {
             var builder = new ContainerBuilder();
+            builder.RegisterModule<AutofacWebTypesModule>();
+
             builder.RegisterType<DataContext>().As<IDataContext>().InstancePerRequest();
             builder.RegisterType<DataFactory>().As<IDataFactory>().InstancePerRequest();
             builder.RegisterType<DeliveryService>().As<IDeliveryService>().InstancePerRequest();
