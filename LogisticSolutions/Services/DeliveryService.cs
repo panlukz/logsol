@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using LogisticSolutions.DAL;
 using LogisticSolutions.Interfaces;
 using LogisticSolutions.Models;
-using LogisticSolutions.Models.Users;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using WebGrease.Css.Extensions;
 
 
 namespace LogisticSolutions.Services
@@ -25,12 +20,12 @@ namespace LogisticSolutions.Services
         {
             newDelivery.SenderId = CurrentUser.Id;
             newDelivery.Number = Guid.NewGuid().ToString();
-            newDelivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.RegistredInSystem));
+            newDelivery.AddTrackingHistoryPoint(GenerateTrackingPoint(TrackingStatus.RegistredInSystem, newDelivery.PickupAddress.City));
 
-            using (var dataContext = DataFactory.GetDataContext())
+            using (var db = DataFactory.GetDataContext())
             {
-                dataContext.Deliveries.Add(newDelivery);
-                dataContext.SaveChanges();
+                db.Deliveries.Add(newDelivery);
+                db.SaveChanges();
             }
 
             return true;

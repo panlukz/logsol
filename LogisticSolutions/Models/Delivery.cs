@@ -23,6 +23,14 @@ namespace LogisticSolutions.Models
 
         public PostalAddress DestinationAddress { get; set; }
 
+        public string ActualLocation { get; set; }
+
         public virtual ICollection<TrackingHistoryPoint> TrackingHistory { get; private set; }
+
+        public void AddTrackingHistoryPoint(TrackingHistoryPoint historyPoint)
+        {
+            TrackingHistory.Add(historyPoint);
+            ActualLocation = historyPoint.Location;
+        }
     }
 }

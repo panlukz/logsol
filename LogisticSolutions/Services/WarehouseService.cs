@@ -24,10 +24,10 @@ namespace LogisticSolutions.Services
 
                 if (delivery == null) return false;
 
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.WarehouseRelease));
+                delivery.AddTrackingHistoryPoint(GenerateTrackingPoint(TrackingStatus.WarehouseRelease));
 
                 //TODO It's temporary until I will do something with passing deliveries between warehouses
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.WarehousePass, delivery.DestinationAddress.City));
+                delivery.AddTrackingHistoryPoint(GenerateTrackingPoint(TrackingStatus.WarehousePass, delivery.DestinationAddress.City));
                 db.SaveChanges();
                 return true;
             }
@@ -41,7 +41,7 @@ namespace LogisticSolutions.Services
 
                 if (delivery == null) return false;
 
-                delivery.TrackingHistory.Add(GenerateTrackingPoint(TrackingStatus.WarehouseReceipt));
+                delivery.AddTrackingHistoryPoint(GenerateTrackingPoint(TrackingStatus.WarehouseReceipt));
                 db.SaveChanges();
                 return true;
             }
