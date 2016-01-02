@@ -11,11 +11,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LogisticSolutions
 {
-    public class IdentityDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class IdentityDbInitializer : DropCreateDatabaseAlways<DataContext>
     {
         private const string DefaultPassword = "passwd";
 
-        protected override void Seed(ApplicationDbContext context)
+        protected override void Seed(DataContext context)
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));

@@ -173,7 +173,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
-    <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\DataContext.cs" />
     <Compile Include="DAL\DataFactory.cs" />
     <Compile Include="Global.asax.cs">

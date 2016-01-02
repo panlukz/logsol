@@ -20,7 +20,7 @@ namespace LogisticSolutions
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer<ApplicationDbContext>(new IdentityDbInitializer());
+            Database.SetInitializer<DataContext>(new IdentityDbInitializer());
 
             AutofacConfig.RegisterDependencies();
 

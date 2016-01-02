@@ -18,7 +18,7 @@ namespace LogisticSolutions.Controllers
         {
             var currentUserId = User.Identity.GetUserId();
             var userManager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new DataContext()));
             var currentUser = userManager.FindById(currentUserId);
 
 

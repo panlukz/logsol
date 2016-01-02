@@ -60,7 +60,7 @@ namespace LogisticSolutions.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            using (var db = new ApplicationDbContext())
+            using (var db = new DataContext())
             {
                 ViewBag.LoginsList = db.Users.ToArray();
             }
@@ -78,7 +78,7 @@ namespace LogisticSolutions.Controllers
         {
             if (!ModelState.IsValid)
             {
-                using (var db = new ApplicationDbContext())
+                using (var db = new DataContext())
                 {
                     ViewBag.LoginsList = db.Users.ToArray();
                 }
