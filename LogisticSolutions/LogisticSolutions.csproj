@@ -186,6 +186,7 @@
     <Compile Include="Interfaces\IWarehouseService.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Delivery.cs" />
+    <Compile Include="Models\DeliveryViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostalAddress.cs" />
     <Compile Include="Models\TrackingHistoryPoint.cs" />
