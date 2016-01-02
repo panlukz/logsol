@@ -1,4 +1,4 @@
-namespace LogisticSolutions.Models
+namespace LogisticSolutions.Models.Users
 {
     public class UserInfo
     {
