@@ -42,9 +42,9 @@ namespace LogisticSolutions.Controllers
 
         public ActionResult TrackingDetails(string id)
         {
-            var delivery = _deliveryService.GetTrackingDetails(id);
+            var trackingDetails = _deliveryService.GetTrackingDetails(id);
 
-            return View(delivery);
+            return View(trackingDetails);
         }
     }
 }

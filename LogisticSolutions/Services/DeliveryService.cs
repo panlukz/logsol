@@ -43,16 +43,25 @@ namespace LogisticSolutions.Services
             return deliveries;
         }
 
-        public Delivery GetTrackingDetails(string id)
+        public IEnumerable<TrackingHistoryPointViewModel> GetTrackingDetails(string id)
         {
-            Delivery delivery;
+            IEnumerable<TrackingHistoryPointViewModel> historyPoints;
 
             using (var db = DataFactory.GetDataContext())
             {
-                delivery = db.Deliveries.Where(d => d.Number == id).Include(e => e.TrackingHistory).FirstOrDefault();
+                historyPoints =
+                    db.TrackingHistoryPoints.Where(p => p.Delivery.Number == id)
+                        .Select(p => new TrackingHistoryPointViewModel()
+                        {
+                            //TODO to think, maybe use AutoMapper in here?
+                            Location = p.Location,
+                            Status =  p.Status,
+                            DateTime = p.DateTime,
+                            Author = p.Author
+                        }).ToList();
             }
 
-            return delivery;
+            return historyPoints;
         }
     }
 }

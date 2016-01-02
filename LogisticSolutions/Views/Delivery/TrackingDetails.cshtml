@@ -1,11 +1,11 @@
 ﻿@using LogisticSolutions.Helpers
 @using LogisticSolutions.Models
 
-@model LogisticSolutions.Models.Delivery
+@model ICollection<TrackingHistoryPointViewModel>
 
 <ul>
-    @foreach (TrackingHistoryPoint status in Model.TrackingHistory)
+    @foreach (var historyPoint in Model)
     {
-        <li>@status.Id | @status.DateTime | @status.Location | @status.Status.GetDisplayName() | @status.Author</li>
+        <li>@historyPoint.DateTime | @historyPoint.Location | @historyPoint.Status.GetDisplayName() | @historyPoint.Author</li>
     }  
 </ul>

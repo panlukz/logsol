@@ -7,6 +7,6 @@ namespace LogisticSolutions.Interfaces
     {
         bool RegisterDelivery(Delivery newDelivery);
         IEnumerable<Delivery> GetDeliveries();
-        Delivery GetTrackingDetails(string id);
+        IEnumerable<TrackingHistoryPointViewModel> GetTrackingDetails(string id);
     }
 }
