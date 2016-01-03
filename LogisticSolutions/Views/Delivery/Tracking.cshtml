@@ -1,4 +1,7 @@
-﻿@using LogisticSolutions.Models
+﻿@using LogisticSolutions.Helpers
+@using LogisticSolutions.Models
+
+@model IEnumerable<DeliveryViewModel>
 
 @{
     ViewBag.Title = "Śledzenie przesyłki";
@@ -7,17 +10,19 @@
 <h2>Śledzenie przesyłki</h2>
 
 <table>
-    @foreach (Delivery delivery in Model)
+    @foreach (var delivery in Model)
     {
         <tr>
-            <th>Data, godzina:</th>
+            <th>Numer przesyłki:</th>
             <th>Miasto odbioru:</th>
             <th>Miasto doręczenia:</th>
+            <th>Status:</th>
         </tr>
         <tr>
-            <td>@delivery.TrackingHistory.Where(t => t.Status == TrackingStatus.RegistredInSystem).FirstOrDefault().DateTime</td>
+            <td>@delivery.Number</td>
             <td>@delivery.PickupAddress.City</td>
             <td>@delivery.DestinationAddress.City</td>
+            <td>@delivery.Status.GetDisplayName()</td>
             <td>@Html.ActionLink("Więcej informacji...", "TrackingDetails", new {Controller ="Delivery", id = delivery.Number })</td>
         </tr>
     }

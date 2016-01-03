@@ -31,14 +31,20 @@ namespace LogisticSolutions.Services
             return true;
         }
 
-        public IEnumerable<Delivery> GetDeliveries()
+        public IEnumerable<DeliveryViewModel> GetDeliveries()
         {
-            IEnumerable<Delivery> deliveries;
+            IEnumerable<DeliveryViewModel> deliveries;
 
             using (var db = DataFactory.GetDataContext())
             {
                 deliveries =
-                    db.Deliveries.Where(d => d.SenderId == CurrentUser.Id).Include(e => e.TrackingHistory).ToList();
+                    db.Deliveries.Where(d => d.SenderId == CurrentUser.Id)/*.Include(e => e.TrackingHistory)*/.Select(d => new DeliveryViewModel()
+                    {
+                        Number = d.Number,
+                        Status = d.TrackingHistory.OrderByDescending(tr => tr.Id).FirstOrDefault().Status,
+                        PickupAddress = d.PickupAddress,
+                        DestinationAddress = d.DestinationAddress
+                    }).ToList();
             }
             return deliveries;
         }
