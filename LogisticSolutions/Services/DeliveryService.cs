@@ -16,15 +16,31 @@ namespace LogisticSolutions.Services
         {
         }
 
-        public bool RegisterDelivery(Delivery newDelivery)
+        public bool RegisterDelivery(AddDeliveryViewModel deliveryVM)
         {
-            newDelivery.SenderId = CurrentUser.Id;
-            newDelivery.Number = Guid.NewGuid().ToString();
-            newDelivery.AddTrackingHistoryPoint(GenerateTrackingPoint(TrackingStatus.RegistredInSystem, newDelivery.PickupAddress.City));
+
+            var delivery = new Delivery()
+            {
+                //TODO need to use automapper here for sure
+                SenderId = CurrentUser.Id,
+                Number = Guid.NewGuid().ToString(),
+                DestinationAddress = deliveryVM.DestinationAddress,
+                PickupAddress = deliveryVM.PickupAddress,
+                AdditionalInfo = deliveryVM.AdditionalInfo,
+                Content = deliveryVM.Content,
+                DeliveryDate = deliveryVM.DeliveryDate,
+                ReceiptDate = deliveryVM.ReceiptDate,
+                Height = deliveryVM.Height,
+                Width = deliveryVM.Width,
+                Weight = deliveryVM.Weight,
+                Length = deliveryVM.Length
+            };
+
+            delivery.AddTrackingHistoryPoint(GenerateTrackingPoint(TrackingStatus.RegistredInSystem, delivery.PickupAddress.City));
 
             using (var db = DataFactory.GetDataContext())
             {
-                db.Deliveries.Add(newDelivery);
+                db.Deliveries.Add(delivery);
                 db.SaveChanges();
             }
 

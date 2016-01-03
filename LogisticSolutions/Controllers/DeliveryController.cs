@@ -22,11 +22,11 @@ namespace LogisticSolutions.Controllers
 
         [Authorize(Roles = "Customer,Admin")]
         [HttpPost]
-        public ActionResult AddDelivery(Delivery newDelivery)
+        public ActionResult AddDelivery(AddDeliveryViewModel delivery)
         {
-            var result = _deliveryService.RegisterDelivery(newDelivery)
-                ? string.Format("Przesyłka zostanie odebrana z {0} oraz wysłana do {1}", newDelivery.PickupAddress.City,
-                    newDelivery.DestinationAddress.City)
+            var result = _deliveryService.RegisterDelivery(delivery)
+                ? string.Format("Przesyłka zostanie odebrana z {0} oraz wysłana do {1}", delivery.PickupAddress.City,
+                    delivery.DestinationAddress.City)
                 : "Błąd";
 
             return Content(result);

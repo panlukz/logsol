@@ -5,7 +5,7 @@ namespace LogisticSolutions.Interfaces
 {
     public interface IDeliveryService
     {
-        bool RegisterDelivery(Delivery newDelivery);
+        bool RegisterDelivery(AddDeliveryViewModel Delivery);
         IEnumerable<DeliveryViewModel> GetDeliveries();
         IEnumerable<TrackingHistoryPointViewModel> GetTrackingDetails(string id);
     }
