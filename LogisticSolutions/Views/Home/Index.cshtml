@@ -2,31 +2,56 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Logistics Solutions</h1>
-    <p class="lead">Twoja lokalizacja: @ViewBag.UserLocation</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+<!-- Intro Header -->
+<header class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="brand-heading">Logistics Solutions</h1>
+                    <p class="intro-text">Twoja lokalizacja: @ViewBag.UserLocation</p>
+                    <div class="button_sliding_bg">Załóż konto</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="container body-content">
+    <div class="row tables">
+        <div class="col-md-4">
+            <div class="box first">
+                <h2>Co z moją przesyłką?</h2>
+                <p>
+                    W momencie nadania paczki przez nadawcę, otrzymasz specjalny komunikat mailowy.
+                    Co więcej – w chwili dostarczenia przesyłki do Twojego Paczkomatu otrzymasz od nas powiadomienie.
+                </p>
+            </div>
+            <div class="button_sliding_bg">Sprawdź status</div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="box second">
+                <h2>Chcę wysłać paczkę</h2>
+                <p>
+                    Podejdź do Paczkomatu i podaj na ekranie swój numer telefonu oraz kod odbioru. Po chwili otworzy się skrytka z Twoją paczką.
+                    Po chwili otworzy się skrytka z Twoją paczką.
+                </p>
+            </div>
+            <div class="button_sliding_bg">Nadaj przesyłkę</div>
+        </div>
+        <div class="col-md-4">
+            <div class="box third">
+                <h2>Zostań klientem</h2>
+                <p>
+                    W momencie nadania paczki przez nadawcę, otrzymasz specjalny komunikat mailowy.
+                    Co więcej – w chwili dostarczenia przesyłki do Twojego Paczkomatu otrzymasz od nas powiadomienie.
+                </p>
+            </div>
+            <div class="button_sliding_bg">Załóż konto</div>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Co z moją przesyłką?</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Sprawdź status przesyłki &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Chcę wysłać paczkę!</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Zleć odbiór przesyłki &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Chcę zostać klientem!</h2>
-        <p>Tylko jeden klik dzieli Cię od zostania naszym klientem. Skorzystaj z poniższego przycisku, wypełnij formularz rejestracyjny
-        i sprawdź jaką ofertę przygotowaliśmy dla Ciebie!</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Załóż konto klienta &raquo;</a></p>
-    </div>
-</div>

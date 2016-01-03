@@ -1,8 +1,14 @@
 ﻿body {
+    font-family: 'Open Sans', sans-serif;
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #fff;
+    color: #000;
 }
 
+h2 {
+    font-family: 'Open Sans', sans-serif;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -21,4 +27,210 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.navbar-fixed-top {
+    margin-bottom: 15px;
+    border-color: #dcdcdc;
+    padding: 10px 0;
+
+}
+
+.jumbotron {
+    margin: 41px 0 0 0;
+    border-radius: 0 !important;
+    padding: 100px 25px;
+    background-image: url('../Content/images/banner.jpg');
+        background-position: center; 
+
+}
+
+.boxes {
+    text-align: center;
+    font-size: 13px;
+    line-height: 22px;
+}
+
+.box1 {
+    background-color: #444f54;
+    padding: 45px 70px;
+    color: #abb1b3;
+    
+}
+
+.box2 {
+    background-color: #68777e;
+    padding: 45px 70px;
+
+}
+
+.button_sliding_bg {
+    color: #fff;
+    background: #5ac266;
+    padding: 15px 15px;
+    border: 3px solid #5ac266;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 0px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #4faf5a;
+	-webkit-transition: all ease 0.8s;
+	-moz-transition: all ease 0.8s;
+	transition: all ease 0.8s;
+}
+.button_sliding_bg:hover {
+    box-shadow: inset 0 100px 0 0 #4faf5a;
+}
+
+.tables div .button_sliding_bg {
+    width: 100%;
+}
+
+
+.navbar-custom {
+    margin-bottom: 0;
+    border-bottom: 1px solid #5ac266;
+    text-transform: uppercase;
+    background-color: #5ac266;
+}
+
+.navbar-custom .navbar-brand {
+    font-weight: 700;
+}
+
+.navbar-custom .navbar-brand:focus {
+    outline: 0;
+}
+
+.navbar-custom .navbar-brand .navbar-toggle {
+    padding: 4px 6px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.navbar-custom .navbar-brand .navbar-toggle:focus,
+.navbar-custom .navbar-brand .navbar-toggle:active {
+    outline: 0;
+}
+
+.navbar-custom a {
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.navbar-custom .nav li a:hover {
+    outline: 0;
+    color: rgba(255,255,255,.8);
+    background-color: transparent;
+}
+
+
+.intro {
+    display: table;
+    width: 100%;
+    height: auto;
+    padding: 250px 0;
+    text-align: center;
+    color: #fff;
+    background: url(../Content/images/banner.jpg) no-repeat bottom center scroll;
+    background-color: #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.intro-subpage {
+    padding: 70px 0;
+    margin: 0 0 50px 0;
+    text-align: left;
+    background: url(../Content/images/subpage.jpg) no-repeat bottom center scroll;
+
+}
+.intro .intro-body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+h1 {
+    font-size: 55px;
+}
+
+.intro-body p {
+    font-size: 18px;
+}
+
+.tables {
+    top: -150px;
+    position: relative;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    text-align: center;
+}
+
+.box h2 {
+    font-size: 19px;
+    font-weight: bold;
+    color: #fff;
+    padding: 40px 0 10px 0;
+}
+
+.box p {
+    font-size: 13px;
+    padding: 0 35px 0 35px;
+    color: #d7d7d7;
+
+}
+
+.first {
+    background-image: url(../Content/images/first.png);
+}
+
+.second {
+    background-image: url(../Content/images/second.png);
+}
+
+.third {
+    background-image: url(../Content/images/third.png);
+}
+
+
+.login-list {
+    padding: 0;
+}
+.login-list-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+#loginForm h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#loginForm .control-label {
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#loginForm input {
+    border: none;
+    border-bottom: 1px solid gray;
+    box-shadow: none;
+    border-radius: 0;
 }
