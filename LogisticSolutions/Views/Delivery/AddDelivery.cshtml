@@ -8,7 +8,8 @@
 
 @using (Html.BeginForm("AddDelivery", "Delivery", FormMethod.Post, new { @class = "form-horizontal" }))
 {
-
+    @Html.ValidationSummary()
+    
     <div class="col-md-6">
         <h4>Adres odbioru paczki:</h4>
 

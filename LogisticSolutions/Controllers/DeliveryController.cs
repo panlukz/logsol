@@ -24,12 +24,19 @@ namespace LogisticSolutions.Controllers
         [HttpPost]
         public ActionResult AddDelivery(AddDeliveryViewModel delivery)
         {
-            var result = _deliveryService.RegisterDelivery(delivery)
-                ? string.Format("Przesyłka zostanie odebrana z {0} oraz wysłana do {1}", delivery.PickupAddress.City,
-                    delivery.DestinationAddress.City)
-                : "Błąd";
 
-            return Content(result);
+            if (ModelState.IsValid)
+            {
+                var result = _deliveryService.RegisterDelivery(delivery)
+                    ? string.Format("Przesyłka zostanie odebrana z {0} oraz wysłana do {1}", delivery.PickupAddress.City,
+                        delivery.DestinationAddress.City)
+                    : "Błąd";
+
+                return Content(result);    
+            }
+
+            return View(delivery);
+
         }
 
         public ActionResult Tracking()
