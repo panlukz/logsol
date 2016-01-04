@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
-using LogisticSolutions.Controllers;
-using LogisticSolutions.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using LogisticSolutions.Models;
 using NUnit.Framework;
 
 namespace Tests
 {
     [TestFixture]
-    public class DeliveryControllerTests
+    public class AddDeliveryModelValidation
     {
         [Test]
-        public void TestMethod1()
+        public void ShouldPassValidation()
         {
-            var fakeDeliveryService = new FakeDeliveryService();
-            var sut = new DeliveryController(fakeDeliveryService);
-
-            var deliveryToAdd = new AddDeliveryViewModel
+            var sut = new AddDeliveryViewModel
             {
                 Width = 30,
                 Weight = 40,
                 Height = 50,
-                Length = 999999999999999,
+                Length = 100,
                 Content = "Artykuły biurowe",
                 AdditionalInfo = "Nr zamówienia 21344221",
                 ReceiptDate = new DateTime(2016, 01, 12),
@@ -43,31 +38,12 @@ namespace Tests
                 DestinationAddressCity = "Łódź"
             };
 
-            sut.AddDelivery(deliveryToAdd);
+            var context = new ValidationContext(sut, null, null);
+            var results = new List<ValidationResult>();
+            var isModelStateValid = Validator.TryValidateObject(sut, context, results, true);
 
-            Assert.That(fakeDeliveryService.IsRegistered, Is.True);
-            Assert.That(sut.ModelState.IsValid, Is.True);
+            Assert.That(isModelStateValid, Is.True);
         }
     }
 
-    public class FakeDeliveryService : IDeliveryService
-    {
-        public bool IsRegistered { get; set; }
-
-        public bool RegisterDelivery(AddDeliveryViewModel delivery)
-        {
-            IsRegistered = true;
-            return true;
-        }
-
-        public IEnumerable<DeliveryViewModel> GetDeliveries()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TrackingHistoryPointViewModel> GetTrackingDetails(string id)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
