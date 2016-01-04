@@ -56,6 +56,7 @@ namespace LogisticSolutions.Models
         public string PickupAddressPhone { get; set; }
 
         [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "Wprowadź poprawny adres email!")]
         [Required(ErrorMessage = "Uzupełnienie pola {0} jest wymagane!")]
         [StringLengthAttribute(50, MinimumLength = 5, ErrorMessage = "Maksymalna wartość pola {0} wynosi {2} znaków!")]
         public string PickupAddressEmail { get; set; }
@@ -75,6 +76,7 @@ namespace LogisticSolutions.Models
         public string PickupAddressAddressLine2 { get; set; }
 
         [Display(Name = "Kod pocztowy")]
+        [RegularExpression("^\\d{2}-\\d{3}$", ErrorMessage = "Wprowadź poprawny kod pocztowy w formacie xx-xxx")]
         [Required(ErrorMessage = "Uzupełnienie pola {0} jest wymagane!")]
         [StringLengthAttribute(6, MinimumLength = 6, ErrorMessage = "Maksymalna wartość pola {0} wynosi {2} znaków!")]
         public string PickupAddressPostalCode { get; set; }
@@ -83,6 +85,7 @@ namespace LogisticSolutions.Models
         [Required(ErrorMessage = "Uzupełnienie pola {0} jest wymagane!")]
         [StringLengthAttribute(30, MinimumLength = 1, ErrorMessage = "Maksymalna wartość pola {0} wynosi {2} znaków!")]
         public string PickupAddressCity { get; set; }
+
 
 
         [Display(Name = "Nazwa nadawcy")]
@@ -96,6 +99,7 @@ namespace LogisticSolutions.Models
         public string DestinationAddressPhone { get; set; }
 
         [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "Wprowadź poprawny adres email!")]
         [Required(ErrorMessage = "Uzupełnienie pola {0} jest wymagane!")]
         [StringLengthAttribute(50, MinimumLength = 5, ErrorMessage = "Maksymalna wartość pola {0} wynosi {2} znaków!")]
         public string DestinationAddressEmail { get; set; }
@@ -115,10 +119,10 @@ namespace LogisticSolutions.Models
         public string DestinationAddressAddressLine2 { get; set; }
 
         [Display(Name = "Kod pocztowy")]
+        [RegularExpression("^\\d{2}-\\d{3}$", ErrorMessage = "Wprowadź poprawny kod pocztowy w formacie xx-xxx")]
         [Required(ErrorMessage = "Uzupełnienie pola {0} jest wymagane!")]
         [StringLengthAttribute(6, MinimumLength = 6, ErrorMessage = "Maksymalna wartość pola {0} wynosi {2} znaków!")]
         public string DestinationAddressPostalCode { get; set; }
-
 
         [Display(Name = "Miasto")]
         [Required(ErrorMessage = "Uzupełnienie pola {0} jest wymagane!")]
