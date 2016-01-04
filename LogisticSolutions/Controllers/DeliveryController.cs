@@ -28,8 +28,8 @@ namespace LogisticSolutions.Controllers
             if (ModelState.IsValid)
             {
                 var result = _deliveryService.RegisterDelivery(delivery)
-                    ? string.Format("Przesyłka zostanie odebrana z {0} oraz wysłana do {1}", delivery.PickupAddress.City,
-                        delivery.DestinationAddress.City)
+                    ? string.Format("Przesyłka zostanie odebrana z {0} oraz wysłana do {1}", delivery.PickupAddressCity,
+                        delivery.DestinationAddressCity)
                     : "Błąd";
 
                 return Content(result);    

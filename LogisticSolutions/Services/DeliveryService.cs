@@ -24,8 +24,28 @@ namespace LogisticSolutions.Services
                 //TODO need to use automapper here for sure
                 SenderId = CurrentUser.Id,
                 Number = Guid.NewGuid().ToString(),
-                DestinationAddress = deliveryVM.DestinationAddress,
-                PickupAddress = deliveryVM.PickupAddress,
+                DestinationAddress = new PostalAddress()
+                {
+                    City = deliveryVM.DestinationAddressCity,
+                    AddressLine1 = deliveryVM.DestinationAddressAddressLine1,
+                    AddressLine2 = deliveryVM.DestinationAddressAddressLine2,
+                    PostalCode = deliveryVM.DestinationAddressPostalCode,
+                    ContactPerson = deliveryVM.DestinationAddressContactPerson,
+                    Name = deliveryVM.DestinationAddressName,
+                    Email = deliveryVM.DestinationAddressEmail,
+                    Phone = deliveryVM.DestinationAddressPhone
+                },
+                PickupAddress = new PostalAddress()
+                {
+                    City = deliveryVM.PickupAddressCity,
+                    AddressLine1 = deliveryVM.PickupAddressAddressLine1,
+                    AddressLine2 = deliveryVM.PickupAddressAddressLine2,
+                    PostalCode = deliveryVM.PickupAddressPostalCode,
+                    ContactPerson = deliveryVM.PickupAddressContactPerson,
+                    Name = deliveryVM.PickupAddressName,
+                    Email = deliveryVM.PickupAddressEmail,
+                    Phone = deliveryVM.PickupAddressPhone
+                },
                 AdditionalInfo = deliveryVM.AdditionalInfo,
                 Content = deliveryVM.Content,
                 DeliveryDate = deliveryVM.DeliveryDate,
