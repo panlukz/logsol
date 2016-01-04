@@ -4,195 +4,260 @@
     ViewBag.Title = "Zleć odbiór przesyłki";
 }
 
-<h2>Zleć odbiór przesyłki</h2>
-
-@using (Html.BeginForm("AddDelivery", "Delivery", FormMethod.Post, new { @class = "form-horizontal" }))
-{
-    @Html.ValidationSummary()
-    
-    <div class="col-md-6">
-        <h4>Adres odbioru paczki:</h4>
-
-        <div class="form-group">
-            @Html.LabelFor(d => d.PickupAddress.Name, "Nazwa odbiorcy:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.PickupAddress.Name, new {@class = "form-control"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(d => d.PickupAddress.Phone, "Telefon:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.PickupAddress.Phone, new {@class = "form-control"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(d => d.PickupAddress.Email, "Email:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.PickupAddress.Email, new {@class = "form-control"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(d => d.PickupAddress.ContactPerson, "Osoba kontaktowa:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.PickupAddress.ContactPerson, new {@class = "form-control"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(d => d.PickupAddress.AddressLine1, "Adres l1:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.PickupAddress.AddressLine1, new {@class = "form-control"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(d => d.PickupAddress.AddressLine2, "Adres l2:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.PickupAddress.AddressLine2, new {@class = "form-control"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(d => d.PickupAddress.PostalCode, "Kod pocztowy:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.PickupAddress.PostalCode, new {@class = "form-control"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(d => d.PickupAddress.City, "Miasto:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.PickupAddress.City, new {@class = "form-control"})
+<!-- Intro Header -->
+<header class="intro intro-subpage">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="brand-heading">/@ViewBag.Title</h1>
+                </div>
             </div>
         </div>
     </div>
+</header>
 
-    <div class="col-md-6">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 feature">
+            <i class="fa fa-cube">ikonka</i>
+            <h3>Dostawa tego samego dnia</h3>
+            <p> 
+                Duis vitae feugiat augue, sed ultricies mauris. 
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                Donec a consequat felis.
+            </p>
+        </div>
+        <div class="col-md-4 feature">
+            <i class="">ikonka</i>
+            <h3>Cennik i regulamin</h3>
+            <p>
+                Duis vitae feugiat augue, sed ultricies mauris.
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                Donec a consequat felis.
+            </p>
+        </div>
+        <div class="col-md-4 feature">
+            <i class="">ikonka</i>
+            <h3>Dostawa w weekend</h3>
+            <p>
+                Duis vitae feugiat augue, sed ultricies mauris.
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                Donec a consequat felis.
+            </p>
+        </div>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 heading">
+            <h2>Zleć odbiór przesyłki</h2>
+            <span>Wypełnij poniższy formularz</span>
+        </div>
+    </div>
+</div>
+<div class="add-delivery">
+    <div class="container">
 
-        <h4>Adres doręczenia paczki:</h4>
+        @using (Html.BeginForm("AddDelivery", "Delivery", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.ValidationSummary()
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Adres odbioru paczki:</h4>
 
-        <div class="form-group">
-            @Html.LabelFor(d => d.DestinationAddress.Name, "Nazwa odbiorcy:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.DestinationAddress.Name, new {@class = "form-control"})
+            <div class="form-group">
+                @Html.LabelFor(d => d.PickupAddress.Name, "Nazwa odbiorcy:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.PickupAddress.Name, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.PickupAddress.Phone, "Telefon:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.PickupAddress.Phone, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.PickupAddress.Email, "Email:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.PickupAddress.Email, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.PickupAddress.ContactPerson, "Osoba kontaktowa:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.PickupAddress.ContactPerson, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.PickupAddress.AddressLine1, "Adres l1:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.PickupAddress.AddressLine1, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.PickupAddress.AddressLine2, "Adres l2:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.PickupAddress.AddressLine2, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.PickupAddress.PostalCode, "Kod pocztowy:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.PickupAddress.PostalCode, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.PickupAddress.City, "Miasto:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.PickupAddress.City, new { @class = "form-control" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(d => d.DestinationAddress.Phone, "Telefon:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.DestinationAddress.Phone, new {@class = "form-control"})
-            </div>
-        </div>
+        <div class="col-md-6">
 
-        <div class="form-group">
-            @Html.LabelFor(d => d.DestinationAddress.Email, "Email:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.DestinationAddress.Email, new {@class = "form-control"})
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(d => d.DestinationAddress.ContactPerson, "Osoba kontaktowa:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.DestinationAddress.ContactPerson, new {@class = "form-control"})
-            </div>
-        </div>
+            <h4>Adres doręczenia paczki:</h4>
 
-        <div class="form-group">
-            @Html.LabelFor(d => d.DestinationAddress.AddressLine1, "Adres l1:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.DestinationAddress.AddressLine1, new {@class = "form-control"})
+            <div class="form-group">
+                @Html.LabelFor(d => d.DestinationAddress.Name, "Nazwa odbiorcy:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.DestinationAddress.Name, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(d => d.DestinationAddress.AddressLine2, "Adres l2:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.DestinationAddress.AddressLine2, new {@class = "form-control"})
+            <div class="form-group">
+                @Html.LabelFor(d => d.DestinationAddress.Phone, "Telefon:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.DestinationAddress.Phone, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(d => d.DestinationAddress.PostalCode, "Kod pocztowy:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.DestinationAddress.PostalCode, new {@class = "form-control"})
+            <div class="form-group">
+                @Html.LabelFor(d => d.DestinationAddress.Email, "Email:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.DestinationAddress.Email, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(d => d.DestinationAddress.City, "Miasto:", new {@class = "col-sm-2 control-label"})
-            <div class="col-sm-10">
-                @Html.TextBoxFor(d => d.DestinationAddress.City, new {@class = "form-control"})
+            <div class="form-group">
+                @Html.LabelFor(d => d.DestinationAddress.ContactPerson, "Osoba kontaktowa:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.DestinationAddress.ContactPerson, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.DestinationAddress.AddressLine1, "Adres l1:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.DestinationAddress.AddressLine1, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.DestinationAddress.AddressLine2, "Adres l2:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.DestinationAddress.AddressLine2, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.DestinationAddress.PostalCode, "Kod pocztowy:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.DestinationAddress.PostalCode, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.DestinationAddress.City, "Miasto:", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(d => d.DestinationAddress.City, new { @class = "form-control" })
+                </div>
             </div>
         </div>
     </div>
+    <div class="additional-info">
+        <h4>Informacje dotyczące paczki:</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(d => d.Width, "Szerokość:", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(d => d.Width, new { @class = "form-control" })
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    @Html.LabelFor(d => d.Length, "Długość:", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(d => d.Length, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(d => d.Height, "Wysokość:", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(d => d.Height, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(d => d.Weight, "Waga:", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(d => d.Weight, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(d => d.ReceiptDate, "Data odbioru:", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(d => d.ReceiptDate, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(d => d.DeliveryDate, "Data dostawy:", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(d => d.DeliveryDate, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(d => d.Content, "Zawartość:", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(d => d.Content, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(d => d.AdditionalInfo, "Dodatkowe informacje:", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(d => d.AdditionalInfo, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
-        @Html.LabelFor(d => d.Width, "Szerokość:", new {@class = "col-sm-2 control-label"})
-        <div class="col-sm-10">
-            @Html.TextBoxFor(d => d.Width, new {@class = "form-control"})
-        </div>
+            <div class="col-sm-12">
+                <button type="submit" class="button_sliding_bg">Zatwierdź</button>
+            </div>
+        </div>        
+        }
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(d => d.Length, "Długość:", new {@class = "col-sm-2 control-label"})
-        <div class="col-sm-10">
-            @Html.TextBoxFor(d => d.Length, new {@class = "form-control"})
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(d => d.Height, "Wysokość:", new {@class = "col-sm-2 control-label"})
-        <div class="col-sm-10">
-            @Html.TextBoxFor(d => d.Height, new {@class = "form-control"})
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(d => d.Weight, "Waga:", new {@class = "col-sm-2 control-label"})
-        <div class="col-sm-10">
-            @Html.TextBoxFor(d => d.Weight, new {@class = "form-control"})
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(d => d.ReceiptDate, "Data odbioru:", new {@class = "col-sm-2 control-label"})
-        <div class="col-sm-10">
-            @Html.TextBoxFor(d => d.ReceiptDate, new {@class = "form-control"})
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(d => d.DeliveryDate, "Data dostawy:", new {@class = "col-sm-2 control-label"})
-        <div class="col-sm-10">
-            @Html.TextBoxFor(d => d.DeliveryDate, new {@class = "form-control"})
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(d => d.Content, "Zawartość:", new {@class = "col-sm-2 control-label"})
-        <div class="col-sm-10">
-            @Html.TextBoxFor(d => d.Content, new {@class = "form-control"})
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(d => d.AdditionalInfo, "Dodatkowe informacje:", new { @class = "col-sm-2 control-label" })
-        <div class="col-sm-10">
-            @Html.TextBoxFor(d => d.AdditionalInfo, new { @class = "form-control" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Zatwierdź</button>
-        </div>
-    </div>
-}
-
-
+</div>
