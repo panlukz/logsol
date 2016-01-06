@@ -192,3 +192,4 @@ ModelManifest.xml
 Migrations/*
 *.csproj.DotSettings
 Web.Release.config
+Properties/PublishProfiles/*
