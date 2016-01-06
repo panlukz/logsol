@@ -205,6 +205,11 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\first.png" />
+    <Content Include="Content\images\second.png" />
+    <Content Include="Content\images\subpage.jpg" />
+    <Content Include="Content\images\third.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -212,6 +217,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\custom-azure.pubxml" />
+    <None Include="Properties\PublishProfiles\smarterasp.pubxml" />
+    <None Include="Properties\PublishProfiles\www.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
