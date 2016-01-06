@@ -189,7 +189,7 @@ _Pvt_Extensions/
 ModelManifest.xml
 
 ##############
-Migrations/*
+Migrations/
 *.csproj.DotSettings
 Web.Release.config
-Properties/PublishProfiles/*
+PublishProfiles/
