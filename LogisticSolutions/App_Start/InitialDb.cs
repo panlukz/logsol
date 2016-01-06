@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LogisticSolutions
 {
-    public class IdentityDbInitializer : DropCreateDatabaseAlways<DataContext>
+    public class IdentityDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
     {
         private const string DefaultPassword = "passwd";
 
