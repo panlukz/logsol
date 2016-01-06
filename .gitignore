@@ -188,5 +188,7 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 
+##############
 Migrations/*
 *.csproj.DotSettings
+Web.Release.config
