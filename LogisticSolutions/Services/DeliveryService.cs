@@ -74,7 +74,7 @@ namespace LogisticSolutions.Services
             using (var db = DataFactory.GetDataContext())
             {
                 deliveries =
-                    db.Deliveries.Where(d => d.SenderId == CurrentUser.Id)/*.Include(e => e.TrackingHistory)*/.Select(d => new DeliveryViewModel()
+                    db.Deliveries.AsNoTracking().Where(d => d.SenderId == CurrentUser.Id)/*.Include(e => e.TrackingHistory)*/.Select(d => new DeliveryViewModel()
                     {
                         Number = d.Number,
                         Status = d.TrackingHistory.OrderByDescending(tr => tr.Id).FirstOrDefault().Status,
@@ -92,7 +92,7 @@ namespace LogisticSolutions.Services
             using (var db = DataFactory.GetDataContext())
             {
                 historyPoints =
-                    db.TrackingHistoryPoints.Where(p => p.Delivery.Number == id)
+                    db.TrackingHistoryPoints.AsNoTracking().Where(p => p.Delivery.Number == id)
                         .Select(p => new TrackingHistoryPointViewModel()
                         {
                             //TODO to think, maybe use AutoMapper in here?

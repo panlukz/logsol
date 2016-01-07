@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using LogisticSolutions.DAL;
@@ -25,19 +26,13 @@ namespace LogisticSolutions.Services
             
             using (var db = DataFactory.GetDataContext())
             {
-                //Wyswietla odbiory czyli takie które maj¹ ostatni status jako RegistredInSystem
-                //i ten PickUpCity jest miastem zalogowanego kuriera
                 reciepts =
-                    db.Deliveries.Where(
+                    db.Deliveries.AsNoTracking().Where(
                         del =>
                             del.PickupAddress.City == CurrentUser.UserInfo.Location &&
                             del.TrackingHistory.OrderByDescending(x => x.Id).FirstOrDefault().Status == TrackingStatus.RegistredInSystem
                             ).ToList();
-//                reciepts =
-//                    db.Deliveries.Where(
-//                        del =>
-//                            (del.ActualLocation == CurrentUser.UserInfo.Location) &&
-//                            del.LastTrackingPoint.Status == TrackingStatus.RegistredInSystem).ToList();
+
             }
 
             return reciepts;
@@ -49,21 +44,13 @@ namespace LogisticSolutions.Services
 
             using (var db = DataFactory.GetDataContext())
             {
-                //Wyœwietla przesy³ki do  dostarczenia. Czyli ostatni status to WareHouseReciept
-                //w miescie tym samym co DestinationCity i tym samym co maisto zalogowanego kuriera.
                 deliveries =
-                    db.Deliveries.Where(
+                    db.Deliveries.AsNoTracking().Where(
                         del =>
                             del.DestinationAddress.City == CurrentUser.UserInfo.Location &&
                             del.TrackingHistory.OrderByDescending(x => x.Id).FirstOrDefault().Status == TrackingStatus.WarehouseReceipt &&
                             del.TrackingHistory.OrderByDescending(x => x.Id).FirstOrDefault().Location == CurrentUser.UserInfo.Location
                             ).ToList();
-//                deliveries =
-//                    db.Deliveries.Where(
-//                        del =>
-//                            (del.DestinationAddress.City == CurrentUser.UserInfo.Location &&
-//                            del.ActualLocation == CurrentUser.UserInfo.Location) &&
-//                            del.LastTrackingPoint.Status == TrackingStatus.WarehouseReceipt).ToList();
             }
 
             return deliveries;

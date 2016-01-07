@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using LogisticSolutions.Interfaces;
@@ -53,7 +54,7 @@ namespace LogisticSolutions.Services
             using (var db = DataFactory.GetDataContext())
             {
                 deliveries =
-                    db.Deliveries.Where(
+                    db.Deliveries.AsNoTracking().Where(
                         del =>
                             del.TrackingHistory.Where(x => x.Status == TrackingStatus.WarehousePass).OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location).ToList();
             }
@@ -67,7 +68,7 @@ namespace LogisticSolutions.Services
             using (var db = DataFactory.GetDataContext())
             {
                 deliveries =
-                    db.Deliveries.Where(
+                    db.Deliveries.AsNoTracking().Where(
                         del =>
                             del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Location == CurrentUser.UserInfo.Location &&
                             del.TrackingHistory.OrderByDescending(x => x.DateTime).FirstOrDefault().Status == TrackingStatus.WarehouseReceipt).ToList();
