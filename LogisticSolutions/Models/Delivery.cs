@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LogisticSolutions.Models
 {
@@ -35,13 +32,15 @@ namespace LogisticSolutions.Models
 
         public string AdditionalInfo { get; set; }
 
+        [Required]
         public PostalAddress PickupAddress { get; set; }
 
+        [Required]
         public PostalAddress DestinationAddress { get; set; }
 
         public string ActualLocation { get; set; }
 
-        public virtual ICollection<TrackingHistoryPoint> TrackingHistory { get; private set; }
+        public ICollection<TrackingHistoryPoint> TrackingHistory { get; private set; }
 
         public void AddTrackingHistoryPoint(TrackingHistoryPoint historyPoint)
         {

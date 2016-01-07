@@ -8,6 +8,7 @@ namespace LogisticSolutions.Interfaces
     {
         IDbSet<Delivery> Deliveries { get; set; }
         IDbSet<TrackingHistoryPoint> TrackingHistoryPoints { get; set; }
+        IDbSet<PostalAddress> PostalAddresses { get; set; } 
 
         int SaveChanges();
     }
