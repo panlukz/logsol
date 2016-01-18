@@ -189,6 +189,7 @@
     <Compile Include="Models\AddDeliveryViewModel.cs" />
     <Compile Include="Models\Delivery.cs" />
     <Compile Include="Models\DeliveryViewModel.cs" />
+    <Compile Include="Models\GetReceiptsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostalAddress.cs" />
     <Compile Include="Models\TrackingHistoryPoint.cs" />

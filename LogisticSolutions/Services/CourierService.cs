@@ -20,22 +20,32 @@ namespace LogisticSolutions.Services
         {
         }
 
-        public IEnumerable<Delivery> GetReceipts()
+        public IEnumerable<GetReceiptsViewModel> GetReceipts()
         {
-            IEnumerable<Delivery> reciepts;
+            IEnumerable<GetReceiptsViewModel> receipts;
             
             using (var db = DataFactory.GetDataContext())
             {
-                reciepts =
+                receipts =
                     db.Deliveries.AsNoTracking().Where(
                         del =>
                             del.PickupAddress.City == CurrentUser.UserInfo.Location &&
                             del.TrackingHistory.OrderByDescending(x => x.Id).FirstOrDefault().Status == TrackingStatus.RegistredInSystem
-                            ).ToList();
+                            ).Select(d => new GetReceiptsViewModel()
+                            {
+                                DeliveryNumber = d.Number, 
+                                Name = d.PickupAddress.Name,
+                                ContactPerson = d.PickupAddress.ContactPerson,
+                                AddressLine1 = d.PickupAddress.AddressLine1,
+                                AddressLine2 = d.PickupAddress.AddressLine2,
+                                City = d.PickupAddress.City,
+                                PostalCode = d.PickupAddress.PostalCode
+                            })
+                            .ToList();
 
             }
 
-            return reciepts;
+            return receipts;
         }
 
         public IEnumerable<Delivery> GetDeliveries()

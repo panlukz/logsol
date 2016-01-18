@@ -1,4 +1,4 @@
-﻿@model System.Collections.Generic.IEnumerable<LogisticSolutions.Models.Delivery>
+﻿@model System.Collections.Generic.IEnumerable<LogisticSolutions.Models.GetReceiptsViewModel>
 
 @{
     ViewBag.Title = "title";
@@ -11,18 +11,22 @@
     {
         <tr>
             <th>Nr przesyłki:</th>
+            <th>Nazwa odbiorcy:</th>
+            <th>Osoba kontaktowa:</th>
             <th>Adres:</th>
             <th>Miasto:</th>
             <th>Kod pocztowy:</th>
             <th>Akcja:</th>
         </tr>
         <tr>
-            <td>@delivery.Number</td>
-            <td>@delivery.PickupAddress.AddressLine1 @delivery.PickupAddress.AddressLine2</td>
-            <td>@delivery.PickupAddress.City</td>
-            <td>@delivery.PickupAddress.PostalCode</td>
-            <td>@Ajax.ActionLink("Zrób odbiór", "Receipt", new {Controller = "Courier", deliveryId = delivery.Number}, new AjaxOptions() {HttpMethod = "POST"})</td>
-            <td>@Ajax.ActionLink("Zdaj na magazyn", "PassToWarehouse", new {Controller = "Courier", deliveryId = delivery.Number}, new AjaxOptions() {HttpMethod = "POST"})</td>
+            <td>@delivery.DeliveryNumber</td>
+            <td>@delivery.Name</td>
+            <td>@delivery.ContactPerson</td>
+            <td>@delivery.AddressLine1 @delivery.AddressLine2</td>
+            <td>@delivery.City</td>
+            <td>@delivery.PostalCode</td>
+            <td>@Ajax.ActionLink("Zrób odbiór", "Receipt", new {Controller = "Courier", deliveryId = delivery.DeliveryNumber}, new AjaxOptions() {HttpMethod = "POST"})</td>
+            <td>@Ajax.ActionLink("Zdaj na magazyn", "PassToWarehouse", new {Controller = "Courier", deliveryId = delivery.DeliveryNumber}, new AjaxOptions() {HttpMethod = "POST"})</td>
         </tr>
     }
 </table>

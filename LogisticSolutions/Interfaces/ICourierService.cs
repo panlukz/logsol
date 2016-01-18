@@ -5,7 +5,7 @@ namespace LogisticSolutions.Interfaces
 {
     public interface ICourierService
     {
-        IEnumerable<Delivery> GetReceipts();
+        IEnumerable<GetReceiptsViewModel> GetReceipts();
 
         IEnumerable<Delivery> GetDeliveries();        
 
