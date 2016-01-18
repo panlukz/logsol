@@ -57,7 +57,6 @@
     <div class="container">
         @using (Html.BeginForm("AddDelivery", "Delivery", FormMethod.Post, new {@class = "form-horizontal"}))
         {
-            @Html.ValidationSummary()
             <div class="row">
                 <div class="col-md-6">
                     <h4>Adres odbioru paczki:</h4>
@@ -65,48 +64,56 @@
                         @Html.LabelFor(d => d.PickupAddressName, "Nazwa odbiorcy:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.PickupAddressName, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.PickupAddressName)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.PickupAddressPhone, "Telefon:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.PickupAddressPhone, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.PickupAddressPhone)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.PickupAddressEmail, "Email:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.PickupAddressEmail, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.PickupAddressEmail)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.PickupAddressContactPerson, "Osoba kontaktowa:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.PickupAddressContactPerson, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.PickupAddressContactPerson)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.PickupAddressAddressLine1, "Adres l1:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.PickupAddressAddressLine1, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.PickupAddressAddressLine1)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.PickupAddressAddressLine2, "Adres l2:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.PickupAddressAddressLine2, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.PickupAddressAddressLine2)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.PickupAddressPostalCode, "Kod pocztowy:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.PickupAddressPostalCode, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.PickupAddressPostalCode)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.PickupAddressCity, "Miasto:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.PickupAddressCity, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.PickupAddressCity)
                         </div>
                     </div>
                 </div>
@@ -117,48 +124,56 @@
                         @Html.LabelFor(d => d.DestinationAddressName, "Nazwa odbiorcy:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.DestinationAddressName, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.DestinationAddressName)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.DestinationAddressPhone, "Telefon:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.DestinationAddressPhone, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.DestinationAddressPhone)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.DestinationAddressEmail, "Email:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.DestinationAddressEmail, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.DestinationAddressEmail)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.DestinationAddressContactPerson, "Osoba kontaktowa:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.DestinationAddressContactPerson, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.DestinationAddressContactPerson)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.DestinationAddressAddressLine1, "Adres l1:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.DestinationAddressAddressLine1, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.DestinationAddressAddressLine1)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.DestinationAddressAddressLine2, "Adres l2:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.DestinationAddressAddressLine2, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.DestinationAddressAddressLine2)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.DestinationAddressPostalCode, "Kod pocztowy:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.DestinationAddressPostalCode, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.DestinationAddressPostalCode)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(d => d.DestinationAddressCity, "Miasto:", new {@class = "col-sm-2 control-label"})
                         <div class="col-sm-10">
                             @Html.TextBoxFor(d => d.DestinationAddressCity, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(d => d.DestinationAddressCity)
                         </div>
                     </div>
                 </div>
@@ -171,12 +186,14 @@
                             @Html.LabelFor(d => d.Width, "Szerokość:", new {@class = "col-sm-2 control-label"})
                             <div class="col-sm-10">
                                 @Html.TextBoxFor(d => d.Width, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(d => d.Width)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(d => d.Length, "Długość:", new {@class = "col-sm-2 control-label"})
                             <div class="col-sm-10">
                                 @Html.TextBoxFor(d => d.Length, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(d => d.Length)
                             </div>
                         </div>
                     </div>
@@ -185,12 +202,14 @@
                             @Html.LabelFor(d => d.Height, "Wysokość:", new {@class = "col-sm-2 control-label"})
                             <div class="col-sm-10">
                                 @Html.TextBoxFor(d => d.Height, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(d => d.Height)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(d => d.Weight, "Waga:", new {@class = "col-sm-2 control-label"})
                             <div class="col-sm-10">
                                 @Html.TextBoxFor(d => d.Weight, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(d => d.Weight)
                             </div>
                         </div>
                     </div>
@@ -200,13 +219,15 @@
                         <div class="form-group">
                             @Html.LabelFor(d => d.ReceiptDate, "Data odbioru:", new {@class = "col-sm-2 control-label"})
                             <div class="col-sm-10">
-                                @Html.TextBoxFor(d => d.ReceiptDate, new {@class = "form-control"})
+                                @Html.EditorFor(d => d.ReceiptDate, "DatePicker")
+                                @Html.ValidationMessageFor(d => d.ReceiptDate)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(d => d.DeliveryDate, "Data dostawy:", new {@class = "col-sm-2 control-label"})
                             <div class="col-sm-10">
-                                @Html.TextBoxFor(d => d.DeliveryDate, new {@class = "form-control"})
+                                @Html.EditorFor(d => d.DeliveryDate, "DatePicker")
+                                @Html.ValidationMessageFor(d => d.DeliveryDate)
                             </div>
                         </div>
                     </div>
@@ -215,12 +236,14 @@
                             @Html.LabelFor(d => d.Content, "Zawartość:", new {@class = "col-sm-2 control-label"})
                             <div class="col-sm-10">
                                 @Html.TextBoxFor(d => d.Content, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(d => d.Content)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(d => d.AdditionalInfo, "Dodatkowe informacje:", new {@class = "col-sm-2 control-label"})
                             <div class="col-sm-10">
                                 @Html.TextBoxFor(d => d.AdditionalInfo, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(d => d.AdditionalInfo)
                             </div>
                         </div>
                     </div>
